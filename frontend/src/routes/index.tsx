@@ -21,6 +21,19 @@ import DepartmentList from "../pages/Departments/DepartmentList";
 import CategoryList from "../pages/Categories/CategoryList";
 import SettingsDashboard from "../pages/Settings";
 
+<<<<<<< HEAD
+=======
+// Environmental Module Pages
+import CarbonDashboard from "../pages/Environment/CarbonDashboard";
+import EmissionFactorList from "../pages/Environment/EmissionFactorList";
+import EmissionFactorForm from "../pages/Environment/EmissionFactorForm";
+import CarbonTransactionList from "../pages/Environment/CarbonTransactionList";
+import CarbonTransactionForm from "../pages/Environment/CarbonTransactionForm";
+import GoalList from "../pages/Environment/GoalList";
+import GoalForm from "../pages/Environment/GoalForm";
+import ProductESGProfile from "../pages/Environment/ProductESGProfile";
+
+>>>>>>> d3e4a3e (Environmental Module)
 export const AppRoutes: React.FC = () => {
   return (
     <Routes>
@@ -88,6 +101,61 @@ export const AppRoutes: React.FC = () => {
             </RoleGuard>
           }
         />
+<<<<<<< HEAD
+=======
+
+        {/* Environmental Module Routes */}
+        <Route path="environment/dashboard" element={<CarbonDashboard />} />
+        
+        <Route path="environment/emission-factors" element={<EmissionFactorList />} />
+        <Route
+          path="environment/emission-factors/create"
+          element={
+            <RoleGuard allowedRoles={["ADMIN"]}>
+              <EmissionFactorForm />
+            </RoleGuard>
+          }
+        />
+        <Route
+          path="environment/emission-factors/edit/:id"
+          element={
+            <RoleGuard allowedRoles={["ADMIN"]}>
+              <EmissionFactorForm />
+            </RoleGuard>
+          }
+        />
+
+        <Route path="environment/transactions" element={<CarbonTransactionList />} />
+        <Route path="environment/transactions/create" element={<CarbonTransactionForm />} />
+        <Route
+          path="environment/transactions/edit/:id"
+          element={
+            <RoleGuard allowedRoles={["ADMIN", "MANAGER"]}>
+              <CarbonTransactionForm />
+            </RoleGuard>
+          }
+        />
+
+        <Route path="environment/goals" element={<GoalList />} />
+        <Route
+          path="environment/goals/create"
+          element={
+            <RoleGuard allowedRoles={["ADMIN", "MANAGER"]}>
+              <GoalForm />
+            </RoleGuard>
+          }
+        />
+        <Route
+          path="environment/goals/edit/:id"
+          element={
+            <RoleGuard allowedRoles={["ADMIN", "MANAGER"]}>
+              <GoalForm />
+            </RoleGuard>
+          }
+        />
+
+        <Route path="environment/products" element={<ProductESGProfile />} />
+>>>>>>> d3e4a3e (Environmental Module)
       </Route>
 
       {/* Catch-all Redirect */}

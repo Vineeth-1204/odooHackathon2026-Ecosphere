@@ -19,17 +19,29 @@ model Role {
 }
 
 model Department {
+<<<<<<< HEAD
   id          String   @id @default(uuid())
   name        String   @unique
   description String?
   users       User[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+=======
+  id                 String              @id @default(uuid())
+  name               String              @unique
+  description        String?
+  users              User[]
+  carbonTransactions CarbonTransaction[]
+  environmentalGoals EnvironmentalGoal[]
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+>>>>>>> d3e4a3e (Environmental Module)
 
   @@map("departments")
 }
 
 model User {
+<<<<<<< HEAD
   id           String      @id @default(uuid())
   email        String      @unique
   password     String
@@ -41,16 +53,39 @@ model User {
   department   Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
+=======
+  id                 String              @id @default(uuid())
+  email              String              @unique
+  password           String
+  firstName          String
+  lastName           String
+  roleId             String
+  role               Role                @relation(fields: [roleId], references: [id])
+  departmentId       String?
+  department         Department?         @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  carbonTransactions CarbonTransaction[]
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+>>>>>>> d3e4a3e (Environmental Module)
 
   @@map("users")
 }
 
 model Category {
+<<<<<<< HEAD
   id          String   @id @default(uuid())
   name        String   @unique
   description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+=======
+  id              String           @id @default(uuid())
+  name            String           @unique
+  description     String?
+  emissionFactors EmissionFactor[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+>>>>>>> d3e4a3e (Environmental Module)
 
   @@map("categories")
 }
@@ -65,3 +100,75 @@ model Setting {
 
   @@map("settings")
 }
+<<<<<<< HEAD
+=======
+
+model EmissionFactor {
+  id                 String              @id @default(uuid())
+  name               String              @unique
+  value              Float
+  unit               String
+  categoryId         String
+  category           Category            @relation(fields: [categoryId], references: [id])
+  source             String?
+  year               Int
+  carbonTransactions CarbonTransaction[]
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+
+  @@map("emission_factors")
+}
+
+model CarbonTransaction {
+  id               String         @id @default(uuid())
+  date             DateTime
+  description      String
+  activityValue    Float
+  emissionFactorId String
+  emissionFactor   EmissionFactor @relation(fields: [emissionFactorId], references: [id], onDelete: Cascade)
+  emissions        Float
+  departmentId     String
+  department       Department     @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  userId           String
+  user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  @@map("carbon_transactions")
+}
+
+model EnvironmentalGoal {
+  id           String      @id @default(uuid())
+  name         String
+  description  String?
+  targetValue  Float
+  currentValue Float       @default(0)
+  unit         String
+  startDate    DateTime
+  endDate      DateTime
+  status       String      @default("ACTIVE")
+  departmentId String?
+  department   Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@map("environmental_goals")
+}
+
+model ProductProfile {
+  id               String   @id @default(uuid())
+  name             String
+  sku              String   @unique
+  description      String?
+  carbonFootprint  Float
+  waterFootprint   Float?
+  wasteGenerated   Float?
+  recyclability    Float?
+  materialSourcing String?
+  esgGrade         String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("product_profiles")
+}
+>>>>>>> d3e4a3e (Environmental Module)

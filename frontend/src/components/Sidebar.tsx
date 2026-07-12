@@ -11,7 +11,13 @@ import {
   Users2,
   ShieldCheck,
   TrendingUp,
+<<<<<<< HEAD
   FileText
+=======
+  FileText,
+  Box,
+  FileSpreadsheet
+>>>>>>> d3e4a3e (Environmental Module)
 } from "lucide-react";
 
 export const Sidebar: React.FC = () => {
@@ -73,6 +79,7 @@ export const Sidebar: React.FC = () => {
             </div>
           </div>
 
+<<<<<<< HEAD
           {/* Environmental Module placeholders for TM2 */}
           <div className="space-y-2">
             <h4 className="px-4 text-[10px] font-bold text-slate-500 tracking-wider uppercase opacity-60">ENVIRONMENT (TM 2)</h4>
@@ -85,6 +92,36 @@ export const Sidebar: React.FC = () => {
                 <TrendingUp size={18} />
                 <span>Goals & ESG</span>
               </div>
+=======
+          {/* Environmental Module for TM2 */}
+          <div className="space-y-2">
+            <h4 className="px-4 text-[10px] font-bold text-slate-500 tracking-wider uppercase">ENVIRONMENT</h4>
+            <div className="flex flex-col gap-1">
+              <NavLink to="/environment/dashboard" className={({ isActive }) => (isActive ? activeClass : inactiveClass)}>
+                <LayoutDashboard size={18} />
+                <span>Env Dashboard</span>
+              </NavLink>
+
+              <NavLink to="/environment/transactions" className={({ isActive }) => (isActive ? activeClass : inactiveClass)}>
+                <FileSpreadsheet size={18} />
+                <span>Carbon Ledger</span>
+              </NavLink>
+
+              <NavLink to="/environment/emission-factors" className={({ isActive }) => (isActive ? activeClass : inactiveClass)}>
+                <Leaf size={18} />
+                <span>Emission Factors</span>
+              </NavLink>
+
+              <NavLink to="/environment/goals" className={({ isActive }) => (isActive ? activeClass : inactiveClass)}>
+                <TrendingUp size={18} />
+                <span>Targets & Goals</span>
+              </NavLink>
+
+              <NavLink to="/environment/products" className={({ isActive }) => (isActive ? activeClass : inactiveClass)}>
+                <Box size={18} />
+                <span>Product ESG</span>
+              </NavLink>
+>>>>>>> d3e4a3e (Environmental Module)
             </div>
           </div>
 

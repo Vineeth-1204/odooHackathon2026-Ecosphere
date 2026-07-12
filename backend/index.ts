@@ -11,6 +11,13 @@ import userRoutes from "./routes/user.routes";
 import departmentRoutes from "./routes/department.routes";
 import categoryRoutes from "./routes/category.routes";
 import settingsRoutes from "./routes/settings.routes";
+<<<<<<< HEAD
+=======
+import emissionRoutes from "./routes/emission.routes";
+import carbonRoutes from "./routes/carbon.routes";
+import goalRoutes from "./routes/goal.routes";
+import productRoutes from "./routes/product.routes";
+>>>>>>> d3e4a3e (Environmental Module)
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -36,6 +43,13 @@ app.use("/api/users", userRoutes);
 app.use("/api/departments", departmentRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/settings", settingsRoutes);
+<<<<<<< HEAD
+=======
+app.use("/api/emissions", emissionRoutes);
+app.use("/api/carbon", carbonRoutes);
+app.use("/api/goals", goalRoutes);
+app.use("/api/products", productRoutes);
+>>>>>>> d3e4a3e (Environmental Module)
 
 // Global Error Handler
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
