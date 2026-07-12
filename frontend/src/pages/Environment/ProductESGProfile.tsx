@@ -157,14 +157,14 @@ export const ProductESGProfile: React.FC = () => {
   // Helper to color-code ESG Grade badges
   const getGradeBadge = (grade: string) => {
     const configs: Record<string, string> = {
-      A: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+      A: "bg-emerald-500/10 text-[#1F4032] border-emerald-500/30",
       B: "bg-green-500/10 text-green-400 border-green-500/30",
       C: "bg-yellow-500/10 text-yellow-400 border-yellow-500/30",
       D: "bg-orange-500/10 text-orange-400 border-orange-500/30",
       E: "bg-red-500/10 text-red-400 border-red-500/30",
       F: "bg-rose-950/40 text-rose-500 border-rose-500/30"
     };
-    return configs[grade.toUpperCase()] || "bg-slate-800 text-slate-400 border-slate-700";
+    return configs[grade.toUpperCase()] || "bg-slate-800 text-[#90998C] border-[#E4E6DF]";
   };
 
   return (
@@ -172,7 +172,7 @@ export const ProductESGProfile: React.FC = () => {
       {/* Back Link */}
       <Link
         to="/environment/dashboard"
-        className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors w-max"
+        className="flex items-center gap-1.5 text-xs text-[#90998C] hover:text-[#24333E] transition-colors w-max"
       >
         <ArrowLeft size={14} /> Back to dashboard
       </Link>
@@ -180,11 +180,11 @@ export const ProductESGProfile: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-100 tracking-tight flex items-center gap-2">
-            <Box className="text-emerald-400" />
+          <h1 className="text-2xl font-extrabold text-[#24333E] tracking-tight flex items-center gap-2">
+            <Box className="text-[#1F4032]" />
             Product ESG Profiles
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#90998C] mt-1">
             Log and review lifecycle ecological impacts, footprints, and ratings of manufactured goods.
           </p>
         </div>
@@ -192,7 +192,7 @@ export const ProductESGProfile: React.FC = () => {
         {isAdminOrManager && (
           <button
             onClick={openCreateModal}
-            className="flex items-center gap-1.5 bg-gradient-primary text-slate-950 font-bold text-xs px-4 py-2 rounded-lg bg-gradient-hover shadow-lg shadow-brand-500/15 cursor-pointer"
+            className="flex items-center gap-1.5 bg-[#1F4032] text-white font-bold text-xs px-4 py-2 rounded-lg hover:bg-[#1F4032]/90 shadow-lg shadow-sm cursor-pointer"
           >
             <Plus size={14} /> Add Product
           </button>
@@ -203,7 +203,7 @@ export const ProductESGProfile: React.FC = () => {
       <div className="glass-panel rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Search */}
         <form onSubmit={handleSearchSubmit} className="relative w-full sm:max-w-xs flex items-center">
-          <Search size={16} className="absolute left-3.5 text-slate-500 pointer-events-none" />
+          <Search size={16} className="absolute left-3.5 text-[#90998C] pointer-events-none" />
           <input
             type="text"
             placeholder="Search SKU or Name..."
@@ -216,11 +216,11 @@ export const ProductESGProfile: React.FC = () => {
 
         {/* ESG Grade filter */}
         <div className="flex items-center gap-2.5 w-full sm:w-auto">
-          <SlidersHorizontal size={14} className="text-slate-500" />
+          <SlidersHorizontal size={14} className="text-[#90998C]" />
           <select
             value={selectedGrade}
             onChange={(e) => setSelectedGrade(e.target.value)}
-            className="glass-input py-1.5 text-xs w-full sm:w-48 bg-slate-950 border border-slate-800"
+            className="glass-input py-1.5 text-xs w-full sm:w-48 bg-white border border-[#E4E6DF]"
           >
             <option value="">All ESG Grades</option>
             <option value="A">Grade A</option>
@@ -243,14 +243,14 @@ export const ProductESGProfile: React.FC = () => {
           {error}
         </div>
       ) : products.length === 0 ? (
-        <div className="glass-panel rounded-xl p-12 text-center text-slate-500 text-sm">
+        <div className="glass-panel rounded-xl p-12 text-center text-[#90998C] text-sm">
           No product profiles cataloged.
         </div>
       ) : (
-        <div className="w-full overflow-x-auto rounded-lg border border-slate-900 bg-slate-950/20 scrollbar-thin">
+        <div className="w-full overflow-x-auto rounded-lg border border-[#E4E6DF] bg-white/20 scrollbar-thin">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-slate-900 bg-slate-900/20 text-[10px] font-bold text-slate-400 uppercase tracking-widest select-none">
+              <tr className="border-b border-[#E4E6DF] bg-[#F3F5EF] text-[10px] font-bold text-[#90998C] uppercase tracking-widest select-none">
                 <th className="px-5 py-4">Product SKU</th>
                 <th className="px-5 py-4">Product Name</th>
                 <th className="px-5 py-4 text-center">ESG Grade</th>
@@ -262,10 +262,10 @@ export const ProductESGProfile: React.FC = () => {
                 {isAdminOrManager && <th className="px-5 py-4 text-center">Actions</th>}
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-900/60 text-xs text-slate-300">
+            <tbody className="divide-y divide-[#E4E6DF] text-xs text-[#24333E]">
               {products.map((p) => (
-                <tr key={p.id} className="hover:bg-slate-900/20 transition-colors">
-                  <td className="px-5 py-3.5 font-bold text-emerald-400 whitespace-nowrap">{p.sku}</td>
+                <tr key={p.id} className="hover:bg-[#F3F5EF] transition-colors">
+                  <td className="px-5 py-3.5 font-bold text-[#1F4032] whitespace-nowrap">{p.sku}</td>
                   <td className="px-5 py-3.5 max-w-xs truncate font-medium" title={p.name}>
                     {p.name}
                   </td>
@@ -275,24 +275,24 @@ export const ProductESGProfile: React.FC = () => {
                     </span>
                   </td>
                   <td className="px-5 py-3.5 text-right whitespace-nowrap font-medium">
-                    {p.carbonFootprint} <span className="text-[9px] text-slate-500">kg CO2e</span>
+                    {p.carbonFootprint} <span className="text-[9px] text-[#90998C]">kg CO2e</span>
                   </td>
-                  <td className="px-5 py-3.5 text-right whitespace-nowrap text-slate-400">
+                  <td className="px-5 py-3.5 text-right whitespace-nowrap text-[#90998C]">
                     {p.waterFootprint !== null && p.waterFootprint !== undefined 
                       ? `${p.waterFootprint} L` 
                       : "-"}
                   </td>
-                  <td className="px-5 py-3.5 text-right whitespace-nowrap text-slate-400">
+                  <td className="px-5 py-3.5 text-right whitespace-nowrap text-[#90998C]">
                     {p.wasteGenerated !== null && p.wasteGenerated !== undefined 
                       ? `${p.wasteGenerated} kg` 
                       : "-"}
                   </td>
-                  <td className="px-5 py-3.5 text-right whitespace-nowrap font-semibold text-slate-200">
+                  <td className="px-5 py-3.5 text-right whitespace-nowrap font-semibold text-[#24333E]">
                     {p.recyclability !== null && p.recyclability !== undefined 
                       ? `${p.recyclability}%` 
                       : "-"}
                   </td>
-                  <td className="px-5 py-3.5 whitespace-nowrap text-slate-400 font-medium">
+                  <td className="px-5 py-3.5 whitespace-nowrap text-[#90998C] font-medium">
                     {p.materialSourcing || "Standard"}
                   </td>
                   {isAdminOrManager && (
@@ -300,13 +300,13 @@ export const ProductESGProfile: React.FC = () => {
                       <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={() => openEditModal(p)}
-                          className="p-1 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                          className="p-1 rounded bg-white hover:bg-[#F3F5EF] border border-[#E4E6DF] text-[#90998C] hover:text-[#24333E] transition-colors cursor-pointer"
                         >
                           <Edit size={12} />
                         </button>
                         <button
                           onClick={() => handleDelete(p.id)}
-                          className="p-1 rounded bg-slate-900 hover:bg-red-500/10 border border-slate-800 text-slate-400 hover:text-red-400 transition-colors cursor-pointer"
+                          className="p-1 rounded bg-white hover:bg-red-500/10 border border-[#E4E6DF] text-[#90998C] hover:text-red-400 transition-colors cursor-pointer"
                         >
                           <Trash2 size={12} />
                         </button>
@@ -322,17 +322,17 @@ export const ProductESGProfile: React.FC = () => {
 
       {/* Interactive Creation/Editing Drawer Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm animate-fade-in p-4 select-none">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm animate-fade-in p-4 select-none">
           <div className="glass-panel w-full max-w-lg rounded-xl shadow-2xl shadow-brand-500/5 overflow-hidden flex flex-col max-h-[90vh]">
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-slate-900 flex items-center justify-between">
-              <h3 className="font-extrabold text-slate-100 tracking-tight flex items-center gap-2 text-sm uppercase">
-                <Box className="text-emerald-400" size={16} />
+            <div className="px-6 py-4 border-b border-[#E4E6DF] flex items-center justify-between">
+              <h3 className="font-extrabold text-[#24333E] tracking-tight flex items-center gap-2 text-sm uppercase">
+                <Box className="text-[#1F4032]" size={16} />
                 {editingProduct ? "Edit Product ESG Profile" : "Catalog Product ESG"}
               </h3>
               <button
                 onClick={() => setModalOpen(false)}
-                className="text-slate-400 hover:text-white transition-colors text-lg font-bold cursor-pointer"
+                className="text-[#90998C] hover:text-[#24333E] transition-colors text-lg font-bold cursor-pointer"
               >
                 &times;
               </button>
@@ -371,7 +371,7 @@ export const ProductESGProfile: React.FC = () => {
 
                 {/* Description */}
                 <div className="flex flex-col gap-1 w-full">
-                  <label htmlFor="prod-desc" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  <label htmlFor="prod-desc" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
                     Product Description
                   </label>
                   <textarea
@@ -379,7 +379,7 @@ export const ProductESGProfile: React.FC = () => {
                     placeholder="Describe product ESG details..."
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="glass-input h-16 text-xs w-full py-2 bg-slate-950/60 border border-slate-800 focus:border-brand-500 outline-none rounded-lg"
+                    className="glass-input h-16 text-xs w-full py-2 bg-white/60 border border-[#E4E6DF] focus:border-brand-500 outline-none rounded-lg"
                   />
                 </div>
 
@@ -398,7 +398,7 @@ export const ProductESGProfile: React.FC = () => {
 
                   {/* ESG Grade */}
                   <div className="flex flex-col gap-1 w-full">
-                    <label htmlFor="prod-grade" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="prod-grade" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
                       ESG Grade
                     </label>
                     <select
@@ -406,7 +406,7 @@ export const ProductESGProfile: React.FC = () => {
                       value={esgGrade}
                       onChange={(e) => setEsgGrade(e.target.value)}
                       required
-                      className="glass-input w-full bg-slate-950 border border-slate-800 text-xs py-2"
+                      className="glass-input w-full bg-white border border-[#E4E6DF] text-xs py-2"
                     >
                       <option value="A">Grade A</option>
                       <option value="B">Grade B</option>
@@ -463,18 +463,18 @@ export const ProductESGProfile: React.FC = () => {
               </div>
 
               {/* Modal buttons */}
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-900 justify-end">
+              <div className="flex items-center gap-3 pt-4 border-t border-[#E4E6DF] justify-end">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white rounded-lg hover:bg-slate-900/60 transition-colors cursor-pointer"
+                  className="px-4 py-2 text-xs font-semibold text-[#90998C] hover:text-[#24333E] rounded-lg hover:bg-white/60 transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
                 <Button
                   type="submit"
                   isLoading={modalLoading}
-                  className="flex items-center gap-1.5 text-xs font-bold text-slate-950"
+                  className="flex items-center gap-1.5 text-xs font-bold text-white"
                 >
                   <Save size={14} /> Save Product
                 </Button>

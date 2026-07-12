@@ -70,7 +70,7 @@ export const DepartmentForm: React.FC<DepartmentFormProps> = ({
       />
 
       <div className="flex flex-col gap-1.5 w-full">
-        <label htmlFor="dept-desc" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        <label htmlFor="dept-desc" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
           Description
         </label>
         <textarea
@@ -83,7 +83,7 @@ export const DepartmentForm: React.FC<DepartmentFormProps> = ({
         />
       </div>
 
-      <div className="flex justify-end gap-3 border-t border-slate-800/80 pt-4 mt-2">
+      <div className="flex justify-end gap-3 border-t border-[#E4E6DF]/80 pt-4 mt-2">
         <Button type="button" variant="ghost" onClick={onCancel} disabled={isSaving}>
           Cancel
         </Button>

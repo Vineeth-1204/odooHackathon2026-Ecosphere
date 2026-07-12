@@ -20,13 +20,13 @@ export const Loading: React.FC<LoadingProps> = ({
   const spinner = (
     <div className="flex flex-col items-center justify-center gap-3">
       <div className={`animate-spin rounded-full border-t-brand-500 border-r-transparent border-b-transparent border-l-transparent ${sizeClasses[size]}`} />
-      {text && <p className="text-xs font-medium text-slate-400 tracking-wider uppercase animate-pulse">{text}</p>}
+      {text && <p className="text-xs font-medium text-[#90998C] tracking-wider uppercase animate-pulse">{text}</p>}
     </div>
   );
 
   if (fullPage) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm">
         {spinner}
       </div>
     );

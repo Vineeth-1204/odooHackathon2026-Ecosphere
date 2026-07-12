@@ -1,21 +1,22 @@
-import { Response } from 'express';
-import prisma from '../lib/prisma';
-import { AuthRequest } from '../middleware/auth.middleware';
-import { getUserBalance } from '../services/xp.service';
+import { Response } from "express";
+import prisma from "../lib/prisma";
+import { AuthRequest } from "../middleware/auth.middleware";
+import { getUserBalance } from "../services/xp.service";
 
 // ── INDIVIDUAL Leaderboard ───────────────────────────
 export const getEmployeeLeaderboard = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { departmentId, limit = '50', offset = '0' } = req.query;
+    const { departmentId, limit = "50", offset = "0" } = req.query;
 
     const users = await prisma.user.findMany({
       where: {
-        ...(departmentId ? { departmentId: Number(departmentId) } : {}),
-        role: 'EMPLOYEE',
+        ...(departmentId ? { departmentId: String(departmentId) } : {}),
+        role: { name: "USER" },
       },
       select: {
         id: true,
-        name: true,
+        firstName: true,
+        lastName: true,
         email: true,
         xpPoints: true,
         rewardPoints: true,
@@ -23,7 +24,7 @@ export const getEmployeeLeaderboard = async (req: AuthRequest, res: Response): P
         department: { select: { name: true } },
         userBadges: { select: { badgeId: true } },
       },
-      orderBy: { xpPoints: 'desc' },
+      orderBy: { xpPoints: "desc" },
       take: Number(limit),
       skip: Number(offset),
     });
@@ -31,11 +32,11 @@ export const getEmployeeLeaderboard = async (req: AuthRequest, res: Response): P
     const ranked = users.map((u, index) => ({
       rank: Number(offset) + index + 1,
       id: u.id,
-      name: u.name,
+      name: `${u.firstName} ${u.lastName}`,
       email: u.email,
       xpPoints: u.xpPoints,
       rewardPoints: u.rewardPoints,
-      department: u.department?.name ?? 'N/A',
+      department: u.department?.name ?? "N/A",
       departmentId: u.departmentId,
       badgeCount: u.userBadges.length,
     }));
@@ -52,7 +53,7 @@ export const getDepartmentLeaderboard = async (_req: AuthRequest, res: Response)
     const departments = await prisma.department.findMany({
       include: {
         users: {
-          where: { role: 'EMPLOYEE' },
+          where: { role: { name: "USER" } },
           select: { xpPoints: true, rewardPoints: true },
         },
       },
@@ -62,7 +63,6 @@ export const getDepartmentLeaderboard = async (_req: AuthRequest, res: Response)
       .map((dept) => ({
         id: dept.id,
         name: dept.name,
-        code: dept.code,
         totalXP: dept.users.reduce((sum, u) => sum + u.xpPoints, 0),
         totalPoints: dept.users.reduce((sum, u) => sum + u.rewardPoints, 0),
         memberCount: dept.users.length,
@@ -85,15 +85,18 @@ export const getMyRank = async (req: AuthRequest, res: Response): Promise<void> 
 
     // Count users with strictly higher XP
     const higherCount = await prisma.user.count({
-      where: { xpPoints: { gt: balance.xpPoints }, role: 'EMPLOYEE' },
+      where: { xpPoints: { gt: balance.xpPoints }, role: { name: "USER" } },
     });
 
-    const totalCount = await prisma.user.count({ where: { role: 'EMPLOYEE' } });
+    const totalCount = await prisma.user.count({ where: { role: { name: "USER" } } });
 
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
-        id: true, name: true, email: true,
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
         departmentId: true,
         department: { select: { name: true } },
         userBadges: { select: { badgeId: true } },
@@ -108,7 +111,7 @@ export const getMyRank = async (req: AuthRequest, res: Response): Promise<void> 
         xpPoints: balance.xpPoints,
         rewardPoints: balance.rewardPoints,
         badgeCount: user?.userBadges.length ?? 0,
-        department: user?.department?.name ?? 'N/A',
+        department: user?.department?.name ?? "N/A",
       },
     });
   } catch (err: any) {

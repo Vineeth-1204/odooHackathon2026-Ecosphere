@@ -31,22 +31,22 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-slate-950/80 backdrop-blur-md transition-opacity"
+        className="absolute inset-0 bg-white/80 backdrop-blur-md transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Container */}
       <div className="relative w-full max-w-lg glass-panel shadow-glass rounded-xl overflow-hidden animate-in fade-in zoom-in-95 duration-200 z-10">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800/80">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E4E6DF]/80">
           {title ? (
-            <h3 className="text-base font-semibold text-slate-100">{title}</h3>
+            <h3 className="text-base font-semibold text-[#24333E]">{title}</h3>
           ) : (
             <div />
           )}
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-slate-900"
+            className="text-[#90998C] hover:text-[#24333E] transition-colors p-1 rounded-lg hover:bg-white"
           >
             <X size={18} />
           </button>

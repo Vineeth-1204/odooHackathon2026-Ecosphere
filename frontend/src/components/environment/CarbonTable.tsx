@@ -36,19 +36,19 @@ export const CarbonTable: React.FC<CarbonTableProps> = ({
   // Helper to color code emissions impact
   const getEmissionsBadge = (emissions: number) => {
     if (emissions < 100) {
-      return "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
+      return "bg-[#EAF0EC] text-[#1F4032] border-[#1F4032]/10";
     }
     if (emissions < 1000) {
-      return "bg-amber-500/10 text-amber-400 border-amber-500/20";
+      return "bg-amber-50 text-amber-700 border-amber-100";
     }
-    return "bg-red-500/10 text-red-400 border-red-500/20";
+    return "bg-red-50 text-[#C1503A] border-red-100";
   };
 
   return (
-    <div className="w-full overflow-x-auto rounded-lg border border-slate-900 bg-slate-950/20 scrollbar-thin">
+    <div className="w-full overflow-x-auto rounded-xl border border-[#E4E6DF] bg-white shadow-sm scrollbar-thin">
       <table className="w-full text-left border-collapse">
         <thead>
-          <tr className="border-b border-slate-900 bg-slate-900/20 text-[10px] font-bold text-slate-400 uppercase tracking-widest select-none">
+          <tr className="border-b border-[#E4E6DF] bg-[#F3F5EF] text-[10px] font-bold text-[#90998C] uppercase tracking-widest select-none">
             <th className="px-5 py-4">Date</th>
             <th className="px-5 py-4">Description</th>
             <th className="px-5 py-4">Category/Factor</th>
@@ -59,10 +59,10 @@ export const CarbonTable: React.FC<CarbonTableProps> = ({
             {isAdminOrManager && (onEdit || onDelete) && <th className="px-5 py-4 text-center">Actions</th>}
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-900/60 text-xs text-slate-300">
+        <tbody className="divide-y divide-[#E4E6DF] text-xs text-[#24333E]">
           {transactions.length === 0 ? (
             <tr>
-              <td colSpan={isAdminOrManager ? 8 : 7} className="px-5 py-12 text-center text-slate-500">
+              <td colSpan={isAdminOrManager ? 8 : 7} className="px-5 py-12 text-center text-[#90998C]">
                 No transaction records found.
               </td>
             </tr>
@@ -75,16 +75,16 @@ export const CarbonTable: React.FC<CarbonTableProps> = ({
               });
 
               return (
-                <tr key={tx.id} className="hover:bg-slate-900/20 transition-colors">
-                  <td className="px-5 py-3.5 font-medium whitespace-nowrap">{formattedDate}</td>
+                <tr key={tx.id} className="hover:bg-[#F3F5EF]/30 transition-colors">
+                  <td className="px-5 py-3.5 font-bold whitespace-nowrap">{formattedDate}</td>
                   <td className="px-5 py-3.5 max-w-xs truncate" title={tx.description}>
                     {tx.description}
                   </td>
-                  <td className="px-5 py-3.5 whitespace-nowrap text-slate-400">
+                  <td className="px-5 py-3.5 whitespace-nowrap text-[#90998C]">
                     {tx.emissionFactor?.name || "Unknown Factor"}
                   </td>
-                  <td className="px-5 py-3.5 text-right font-medium whitespace-nowrap">
-                    {tx.activityValue} <span className="text-[10px] text-slate-500">{tx.emissionFactor?.unit}</span>
+                  <td className="px-5 py-3.5 text-right font-bold whitespace-nowrap">
+                    {tx.activityValue} <span className="text-[10px] text-[#90998C]">{tx.emissionFactor?.unit}</span>
                   </td>
                   <td className="px-5 py-3.5 text-right whitespace-nowrap">
                     <span className={`px-2 py-0.5 rounded border text-[10px] font-bold ${getEmissionsBadge(tx.emissions)}`}>
@@ -92,9 +92,9 @@ export const CarbonTable: React.FC<CarbonTableProps> = ({
                     </span>
                   </td>
                   <td className="px-5 py-3.5 whitespace-nowrap">
-                    <span className="text-slate-400 font-semibold">{tx.department?.name || "Company"}</span>
+                    <span className="text-[#24333E] font-bold">{tx.department?.name || "Company"}</span>
                   </td>
-                  <td className="px-5 py-3.5 whitespace-nowrap text-slate-400">
+                  <td className="px-5 py-3.5 whitespace-nowrap text-[#90998C]">
                     {tx.user ? `${tx.user.firstName} ${tx.user.lastName.charAt(0)}.` : "System"}
                   </td>
                   {isAdminOrManager && (onEdit || onDelete) && (
@@ -103,7 +103,7 @@ export const CarbonTable: React.FC<CarbonTableProps> = ({
                         {onEdit && (
                           <button
                             onClick={() => onEdit(tx)}
-                            className="p-1 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                            className="p-1 rounded bg-white hover:bg-[#F3F5EF] border border-[#E4E6DF] text-[#90998C] hover:text-[#24333E] transition-colors cursor-pointer"
                             title="Edit Record"
                           >
                             <Edit size={12} />
@@ -112,7 +112,7 @@ export const CarbonTable: React.FC<CarbonTableProps> = ({
                         {onDelete && (
                           <button
                             onClick={() => onDelete(tx.id)}
-                            className="p-1 rounded bg-slate-900 hover:bg-red-500/10 border border-slate-800 text-slate-400 hover:text-red-400 transition-colors cursor-pointer"
+                            className="p-1 rounded bg-white hover:bg-red-50 border border-[#E4E6DF] text-[#90998C] hover:text-[#C1503A] transition-colors cursor-pointer"
                             title="Delete Record"
                           >
                             <Trash2 size={12} />

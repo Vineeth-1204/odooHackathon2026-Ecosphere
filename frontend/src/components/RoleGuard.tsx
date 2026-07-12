@@ -18,8 +18,8 @@ export const RoleGuard: React.FC<RoleGuardProps> = ({ allowedRoles, children }) 
   const userRole = user?.role?.name;
 
   if (!userRole || !allowedRoles.includes(userRole)) {
-    // Redirect unauthorized users to dashboard or simple fallback
-    return <Navigate to="/dashboard" replace />;
+    // Redirect unauthorized users to root fallback
+    return <Navigate to="/" replace />;
   }
 
   return <>{children}</>;

@@ -61,17 +61,17 @@ export const Register: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4 relative overflow-hidden bg-slate-950">
+    <div className="min-h-screen w-full flex items-center justify-center p-4 relative overflow-hidden bg-white">
       <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-brand-500/10 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-emerald-500/5 blur-[100px] pointer-events-none" />
 
       <div className="relative w-full max-w-lg glass-panel shadow-glass rounded-2xl p-8 z-10">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center font-extrabold text-2xl text-slate-950 mx-auto shadow-lg shadow-brand-500/20 mb-3.5">
+          <div className="w-12 h-12 rounded-xl bg-[#1F4032] flex items-center justify-center font-extrabold text-2xl text-white mx-auto shadow-lg shadow-brand-500/20 mb-3.5">
             E
           </div>
-          <h2 className="text-2xl font-bold text-slate-100 tracking-tight">Create an Account</h2>
-          <p className="text-slate-400 text-sm mt-1.5">Join Ecosphere to begin tracking your ESG metrics</p>
+          <h2 className="text-2xl font-bold text-[#24333E] tracking-tight">Create an Account</h2>
+          <p className="text-[#90998C] text-sm mt-1.5">Join Ecosphere to begin tracking your ESG metrics</p>
         </div>
 
         {error && (
@@ -132,18 +132,18 @@ export const Register: React.FC = () => {
           />
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="department" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <label htmlFor="department" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
               Department
             </label>
             <div className="relative flex items-center">
-              <div className="absolute left-3.5 text-slate-500 pointer-events-none">
+              <div className="absolute left-3.5 text-[#90998C] pointer-events-none">
                 <Building size={16} />
               </div>
               <select
                 id="department"
                 value={departmentId}
                 onChange={(e) => setDepartmentId(e.target.value)}
-                className="glass-input w-full pl-11 appearance-none bg-slate-950 pr-8"
+                className="glass-input w-full pl-11 appearance-none bg-white pr-8"
                 disabled={isLoading}
               >
                 <option value="">Select a Department (Optional)</option>
@@ -161,9 +161,9 @@ export const Register: React.FC = () => {
           </Button>
         </form>
 
-        <div className="text-center mt-8 text-xs text-slate-400 border-t border-slate-900 pt-6">
+        <div className="text-center mt-8 text-xs text-[#90998C] border-t border-[#E4E6DF] pt-6">
           Already have an account?{" "}
-          <Link to="/login" className="font-bold text-brand-400 hover:text-brand-300 transition-colors">
+          <Link to="/login" className="font-bold text-[#1F4032] hover:text-brand-300 transition-colors">
             Sign In
           </Link>
         </div>

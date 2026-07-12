@@ -45,22 +45,22 @@ export const NotificationSettings: React.FC<NotificationSettingsProps> = ({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-6">
       {success && (
-        <div className="p-3 text-xs font-semibold rounded bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center gap-2">
+        <div className="p-3 text-xs font-semibold rounded bg-brand-500/10 border border-brand-500/20 text-[#1F4032] flex items-center gap-2">
           <CheckCircle size={16} />
           <span>{success}</span>
         </div>
       )}
 
       {/* Digest toggle */}
-      <div className="flex items-center justify-between p-4 bg-slate-950/40 rounded-lg border border-slate-900">
+      <div className="flex items-center justify-between p-4 bg-white/40 rounded-lg border border-[#E4E6DF]">
         <div className="flex flex-col">
-          <span className="text-xs font-semibold text-slate-300">Weekly ESG Summary Digest</span>
-          <span className="text-[10px] text-slate-500 mt-0.5">Send a consolidated sustainability report to department managers weekly</span>
+          <span className="text-xs font-semibold text-[#24333E]">Weekly ESG Summary Digest</span>
+          <span className="text-[10px] text-[#90998C] mt-0.5">Send a consolidated sustainability report to department managers weekly</span>
         </div>
         <button
           type="button"
           onClick={() => setDigest(!digest)}
-          className={`transition-colors ${digest ? "text-brand-400" : "text-slate-600"}`}
+          className={`transition-colors ${digest ? "text-[#1F4032]" : "text-slate-600"}`}
           disabled={isSaving}
         >
           {digest ? <ToggleRight size={38} /> : <ToggleLeft size={38} />}
@@ -68,15 +68,15 @@ export const NotificationSettings: React.FC<NotificationSettingsProps> = ({
       </div>
 
       {/* Alerts toggle */}
-      <div className="flex items-center justify-between p-4 bg-slate-950/40 rounded-lg border border-slate-900">
+      <div className="flex items-center justify-between p-4 bg-white/40 rounded-lg border border-[#E4E6DF]">
         <div className="flex flex-col">
-          <span className="text-xs font-semibold text-slate-300">Compliance & Audit Alert Broadcasts</span>
-          <span className="text-[10px] text-slate-500 mt-0.5">Alert administrators immediately when non-compliance is logged</span>
+          <span className="text-xs font-semibold text-[#24333E]">Compliance & Audit Alert Broadcasts</span>
+          <span className="text-[10px] text-[#90998C] mt-0.5">Alert administrators immediately when non-compliance is logged</span>
         </div>
         <button
           type="button"
           onClick={() => setAlerts(!alerts)}
-          className={`transition-colors ${alerts ? "text-brand-400" : "text-slate-600"}`}
+          className={`transition-colors ${alerts ? "text-[#1F4032]" : "text-slate-600"}`}
           disabled={isSaving}
         >
           {alerts ? <ToggleRight size={38} /> : <ToggleLeft size={38} />}

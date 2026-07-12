@@ -39,7 +39,7 @@ export const Dialog: React.FC<DialogProps> = ({
           <AlertCircle size={22} />
         </div>
         <div className="flex-1 flex flex-col gap-1.5">
-          <p className="text-sm text-slate-300 leading-relaxed">{description}</p>
+          <p className="text-sm text-[#24333E] leading-relaxed">{description}</p>
           <div className="flex justify-end gap-3 mt-6">
             <Button variant="ghost" onClick={onClose} disabled={isLoading}>
               {cancelText}

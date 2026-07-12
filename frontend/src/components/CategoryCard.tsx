@@ -20,26 +20,26 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
   isAdmin = false
 }) => {
   return (
-    <div className="glass-panel glass-panel-hover rounded-xl p-5 flex flex-col justify-between h-48">
+    <div className="glass-panel glass-panel-hover rounded-xl p-5 flex flex-col justify-between h-48 bg-white border border-[#E4E6DF] shadow-sm text-left">
       <div>
         <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-lg bg-teal-500/10 text-teal-400">
+          <div className="p-2 rounded-lg bg-[#EAF0EC] text-[#1F4032]">
             <Folder size={18} />
           </div>
-          <h4 className="text-sm font-bold text-slate-100 line-clamp-1">{category.name}</h4>
+          <h4 className="text-sm font-bold text-[#24333E] line-clamp-1">{category.name}</h4>
         </div>
-        <p className="text-xs text-slate-400 mt-3.5 line-clamp-3 leading-relaxed">
+        <p className="text-xs text-[#90998C] mt-3.5 line-clamp-3 leading-relaxed">
           {category.description || "No description configured for this category."}
         </p>
       </div>
 
       {isAdmin && (
-        <div className="flex items-center justify-end gap-2 border-t border-slate-800/80 pt-3 mt-4">
+        <div className="flex items-center justify-end gap-2 border-t border-[#E4E6DF] pt-3 mt-4">
           <Button variant="ghost" size="sm" onClick={onEdit} className="h-8 w-8 !p-0">
-            <Edit size={14} className="text-slate-400 hover:text-white" />
+            <Edit size={14} className="text-[#90998C] hover:text-[#24333E]" />
           </Button>
-          <Button variant="ghost" size="sm" onClick={onDelete} className="h-8 w-8 !p-0 hover:bg-red-500/10">
-            <Trash2 size={14} className="text-red-400 hover:text-red-300" />
+          <Button variant="ghost" size="sm" onClick={onDelete} className="h-8 w-8 !p-0 hover:bg-red-50">
+            <Trash2 size={14} className="text-[#C1503A] hover:brightness-110" />
           </Button>
         </div>
       )}

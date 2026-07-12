@@ -1,7 +1,7 @@
-import { Response } from 'express';
-import prisma from '../lib/prisma';
-import { AuthRequest } from '../middleware/auth.middleware';
-import { awardRewardPoints, awardXP } from '../services/xp.service';
+import { Response } from "express";
+import prisma from "../lib/prisma";
+import { AuthRequest } from "../middleware/auth.middleware";
+import { awardRewardPoints, awardXP } from "../services/xp.service";
 
 // ── JOIN CSR Activity (Employee) ────────────────────
 export const joinCSRActivity = async (req: AuthRequest, res: Response): Promise<void> => {
@@ -10,8 +10,8 @@ export const joinCSRActivity = async (req: AuthRequest, res: Response): Promise<
     const userId = req.user!.id;
 
     const activity = await prisma.cSRActivity.findUnique({ where: { id: csrActivityId } });
-    if (!activity || activity.status !== 'ACTIVE') {
-      res.status(400).json({ success: false, message: 'Activity not available for joining' });
+    if (!activity || activity.status !== "ACTIVE") {
+      res.status(400).json({ success: false, message: "Activity not available for joining" });
       return;
     }
 
@@ -19,7 +19,7 @@ export const joinCSRActivity = async (req: AuthRequest, res: Response): Promise<
     if (activity.maxParticipants) {
       const count = await prisma.participation.count({ where: { csrActivityId } });
       if (count >= activity.maxParticipants) {
-        res.status(400).json({ success: false, message: 'Activity is full' });
+        res.status(400).json({ success: false, message: "Activity is full" });
         return;
       }
     }
@@ -43,7 +43,7 @@ export const uploadCSRProof = async (req: AuthRequest, res: Response): Promise<v
     const userId = req.user!.id;
 
     if (!req.file) {
-      res.status(400).json({ success: false, message: 'No file uploaded' });
+      res.status(400).json({ success: false, message: "No file uploaded" });
       return;
     }
 
@@ -51,7 +51,7 @@ export const uploadCSRProof = async (req: AuthRequest, res: Response): Promise<v
 
     const participation = await prisma.participation.update({
       where: { userId_csrActivityId: { userId, csrActivityId } },
-      data: { proofUrl, status: 'PENDING' },
+      data: { proofUrl, status: "PENDING" },
     });
 
     res.json({ success: true, data: participation });
@@ -67,7 +67,7 @@ export const getMyParticipations = async (req: AuthRequest, res: Response): Prom
     const participations = await prisma.participation.findMany({
       where: { userId },
       include: { csrActivity: { include: { category: true } } },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
     res.json({ success: true, data: participations });
   } catch (err: any) {
@@ -87,12 +87,22 @@ export const getCSRParticipations = async (req: AuthRequest, res: Response): Pro
         ...(status ? { status: status as any } : {}),
       },
       include: {
-        user: { select: { id: true, name: true, email: true, departmentId: true } },
+        user: { select: { id: true, firstName: true, lastName: true, email: true, departmentId: true } },
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
 
-    res.json({ success: true, data: participations });
+    const mapped = participations.map((p) => ({
+      ...p,
+      user: {
+        id: p.user.id,
+        name: `${p.user.firstName} ${p.user.lastName}`,
+        email: p.user.email,
+        departmentId: p.user.departmentId,
+      },
+    }));
+
+    res.json({ success: true, data: mapped });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });
   }
@@ -105,15 +115,25 @@ export const getAllParticipations = async (req: AuthRequest, res: Response): Pro
     const participations = await prisma.participation.findMany({
       where: {
         ...(status ? { status: status as any } : {}),
-        ...(userId ? { userId: Number(userId) } : {}),
+        ...(userId ? { userId: String(userId) } : {}),
       },
       include: {
-        user: { select: { id: true, name: true, email: true } },
+        user: { select: { id: true, firstName: true, lastName: true, email: true } },
         csrActivity: { select: { id: true, title: true } },
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
-    res.json({ success: true, data: participations });
+
+    const mapped = participations.map((p) => ({
+      ...p,
+      user: {
+        id: p.user.id,
+        name: `${p.user.firstName} ${p.user.lastName}`,
+        email: p.user.email,
+      },
+    }));
+
+    res.json({ success: true, data: mapped });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });
   }
@@ -129,7 +149,7 @@ export const approveParticipation = async (req: AuthRequest, res: Response): Pro
       include: { csrActivity: true },
     });
     if (!participation) {
-      res.status(404).json({ success: false, message: 'Participation not found' });
+      res.status(404).json({ success: false, message: "Participation not found" });
       return;
     }
 
@@ -137,7 +157,7 @@ export const approveParticipation = async (req: AuthRequest, res: Response): Pro
 
     await prisma.participation.update({
       where: { id },
-      data: { status: 'APPROVED', pointsAwarded: pointsToAward, completedAt: new Date() },
+      data: { status: "APPROVED", pointsAwarded: pointsToAward, completedAt: new Date() },
     });
 
     // Award reward points
@@ -157,10 +177,10 @@ export const rejectParticipation = async (req: AuthRequest, res: Response): Prom
 
     await prisma.participation.update({
       where: { id },
-      data: { status: 'REJECTED', rejectionNote },
+      data: { status: "REJECTED", rejectionNote },
     });
 
-    res.json({ success: true, message: 'Participation rejected' });
+    res.json({ success: true, message: "Participation rejected" });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });
   }
@@ -173,8 +193,8 @@ export const joinChallenge = async (req: AuthRequest, res: Response): Promise<vo
     const userId = req.user!.id;
 
     const challenge = await prisma.challenge.findUnique({ where: { id: challengeId } });
-    if (!challenge || challenge.status !== 'ACTIVE') {
-      res.status(400).json({ success: false, message: 'Challenge not available for joining' });
+    if (!challenge || challenge.status !== "ACTIVE") {
+      res.status(400).json({ success: false, message: "Challenge not available for joining" });
       return;
     }
 
@@ -204,13 +224,13 @@ export const updateChallengeProgress = async (req: AuthRequest, res: Response): 
       data: {
         ...(progress !== undefined && { progress: Math.min(100, Number(progress)) }),
         ...(proofUrl && { proofUrl }),
-        status: 'PENDING',
+        status: "PENDING",
       },
     });
 
     // Verify ownership
     if (participation.userId !== userId) {
-      res.status(403).json({ success: false, message: 'Not your participation' });
+      res.status(403).json({ success: false, message: "Not your participation" });
       return;
     }
 
@@ -227,7 +247,7 @@ export const getMyChallengeParticipations = async (req: AuthRequest, res: Respon
     const participations = await prisma.challengeParticipation.findMany({
       where: { userId },
       include: { challenge: { include: { category: true } } },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
     res.json({ success: true, data: participations });
   } catch (err: any) {
@@ -247,12 +267,21 @@ export const getChallengeSubmissions = async (req: AuthRequest, res: Response): 
         ...(status ? { status: status as any } : {}),
       },
       include: {
-        user: { select: { id: true, name: true, email: true } },
+        user: { select: { id: true, firstName: true, lastName: true, email: true } },
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
 
-    res.json({ success: true, data: submissions });
+    const mapped = submissions.map((s) => ({
+      ...s,
+      user: {
+        id: s.user.id,
+        name: `${s.user.firstName} ${s.user.lastName}`,
+        email: s.user.email,
+      },
+    }));
+
+    res.json({ success: true, data: mapped });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });
   }
@@ -268,7 +297,7 @@ export const approveChallengeParticipation = async (req: AuthRequest, res: Respo
       include: { challenge: true },
     });
     if (!participation) {
-      res.status(404).json({ success: false, message: 'Participation not found' });
+      res.status(404).json({ success: false, message: "Participation not found" });
       return;
     }
 
@@ -276,7 +305,7 @@ export const approveChallengeParticipation = async (req: AuthRequest, res: Respo
 
     await prisma.challengeParticipation.update({
       where: { id },
-      data: { status: 'APPROVED', xpAwarded: xpToAward, completedAt: new Date() },
+      data: { status: "APPROVED", xpAwarded: xpToAward, completedAt: new Date() },
     });
 
     // Award XP — this also triggers badge auto-check
@@ -296,10 +325,10 @@ export const rejectChallengeParticipation = async (req: AuthRequest, res: Respon
 
     await prisma.challengeParticipation.update({
       where: { id },
-      data: { status: 'REJECTED', rejectionNote },
+      data: { status: "REJECTED", rejectionNote },
     });
 
-    res.json({ success: true, message: 'Challenge participation rejected' });
+    res.json({ success: true, message: "Challenge participation rejected" });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });
   }

@@ -32,10 +32,10 @@ export const EmissionFactorCard: React.FC<EmissionFactorCardProps> = ({
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-col gap-1.5">
-          <span className="text-[10px] bg-slate-900 border border-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded-full w-max">
+          <span className="text-[10px] bg-white border border-[#E4E6DF] text-[#90998C] font-bold px-2 py-0.5 rounded-full w-max">
             {factor.category.name}
           </span>
-          <h4 className="font-bold text-slate-100 line-clamp-1 text-sm tracking-tight">
+          <h4 className="font-bold text-[#24333E] line-clamp-1 text-sm tracking-tight">
             {factor.name}
           </h4>
         </div>
@@ -45,7 +45,7 @@ export const EmissionFactorCard: React.FC<EmissionFactorCardProps> = ({
             {onEdit && (
               <button
                 onClick={() => onEdit(factor)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all cursor-pointer"
+                className="p-1.5 rounded-lg text-[#90998C] hover:text-[#24333E] hover:bg-[#F3F5EF] transition-all cursor-pointer"
                 title="Edit Factor"
               >
                 <Edit size={14} />
@@ -54,7 +54,7 @@ export const EmissionFactorCard: React.FC<EmissionFactorCardProps> = ({
             {onDelete && (
               <button
                 onClick={() => onDelete(factor.id)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-all cursor-pointer"
+                className="p-1.5 rounded-lg text-[#90998C] hover:text-red-400 hover:bg-red-500/10 transition-all cursor-pointer"
                 title="Delete Factor"
               >
                 <Trash2 size={14} />
@@ -66,16 +66,16 @@ export const EmissionFactorCard: React.FC<EmissionFactorCardProps> = ({
 
       {/* Main Metric */}
       <div className="my-2.5">
-        <span className="text-2xl font-extrabold text-emerald-400 tracking-tight">
+        <span className="text-2xl font-extrabold text-[#1F4032] tracking-tight">
           {factor.value}
         </span>
-        <span className="text-xs text-slate-400 ml-1.5 font-medium">
+        <span className="text-xs text-[#90998C] ml-1.5 font-medium">
           kg CO2e / {factor.unit}
         </span>
       </div>
 
       {/* Footer Info */}
-      <div className="flex items-center justify-between border-t border-slate-900 pt-2.5 text-[10px] text-slate-500 font-semibold uppercase">
+      <div className="flex items-center justify-between border-t border-[#E4E6DF] pt-2.5 text-[10px] text-[#90998C] font-semibold uppercase">
         <span className="truncate max-w-[140px]" title={factor.source || "Generic"}>
           Source: {factor.source || "Generic"}
         </span>

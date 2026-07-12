@@ -24,7 +24,7 @@ export function DataTable<T>({
 }: DataTableProps<T>) {
   if (isLoading) {
     return (
-      <div className="border border-slate-800 rounded-lg bg-slate-950/20 p-12 flex justify-center">
+      <div className="border border-[#E4E6DF] rounded-lg bg-white/20 p-12 flex justify-center">
         <Loading text="Retrieving records..." />
       </div>
     );
@@ -32,7 +32,7 @@ export function DataTable<T>({
 
   if (data.length === 0) {
     return (
-      <div className="border border-slate-800 rounded-lg bg-slate-950/20 py-16 text-center text-slate-400">
+      <div className="border border-[#E4E6DF] rounded-lg bg-white/20 py-16 text-center text-[#90998C]">
         <div className="text-sm font-medium">{emptyMessage}</div>
       </div>
     );

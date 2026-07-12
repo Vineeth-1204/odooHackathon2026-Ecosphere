@@ -92,7 +92,7 @@ export const UserList: React.FC = () => {
       key: "name",
       label: "User Name",
       render: (item: any) => (
-        <div className="font-semibold text-slate-100">
+        <div className="font-bold text-[#24333E]">
           {item.firstName} {item.lastName}
         </div>
       )
@@ -104,10 +104,10 @@ export const UserList: React.FC = () => {
       render: (item: any) => (
         <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
           item.role.name === "ADMIN" 
-            ? "bg-red-500/10 text-red-400 border border-red-500/10" 
+            ? "bg-red-50 text-[#C1503A] border border-red-100" 
             : item.role.name === "MANAGER" 
-            ? "bg-purple-500/10 text-purple-400 border border-purple-500/10" 
-            : "bg-blue-500/10 text-blue-400 border border-blue-500/10"
+            ? "bg-purple-50 text-purple-600 border border-purple-100" 
+            : "bg-[#EAF0EC] text-[#1F4032] border border-[#1F4032]/10"
         }`}>
           {item.role.name}
         </span>
@@ -117,7 +117,7 @@ export const UserList: React.FC = () => {
       key: "department",
       label: "Department",
       render: (item: any) => (
-        <span className="text-slate-300 font-medium">
+        <span className="text-[#24333E] font-medium">
           {item.department?.name || "-"}
         </span>
       )
@@ -130,9 +130,9 @@ export const UserList: React.FC = () => {
         const isSelf = item.id === currentUser?.id;
         return (
           <div className="flex items-center justify-end gap-1.5">
-            <Link to={`/users/edit/${item.id}`}>
+            <Link to={`/admin/users/edit/${item.id}`}>
               <Button variant="ghost" size="sm" className="h-8 w-8 !p-0" title="Edit User">
-                <Edit size={14} className="text-slate-400 hover:text-white" />
+                <Edit size={14} className="text-[#90998C] hover:text-[#24333E]" />
               </Button>
             </Link>
             
@@ -140,11 +140,11 @@ export const UserList: React.FC = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-8 w-8 !p-0 hover:bg-red-500/10"
+                className="h-8 w-8 !p-0 hover:bg-red-50"
                 onClick={() => setDeleteUserId(item.id)}
                 title="Delete User"
               >
-                <Trash2 size={14} className="text-red-400 hover:text-red-300" />
+                <Trash2 size={14} className="text-[#C1503A] hover:brightness-110" />
               </Button>
             )}
           </div>
@@ -158,13 +158,13 @@ export const UserList: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-100">User Accounts</h1>
-          <p className="text-slate-400 text-sm mt-1">Manage platform members, assign departments, and check roles</p>
+          <h1 className="text-2xl font-bold tracking-tight text-[#24333E]">User Accounts</h1>
+          <p className="text-[#90998C] text-sm mt-1">Manage platform members, assign departments, and check roles</p>
         </div>
 
         {isAdmin && (
-          <Link to="/users/create">
-            <Button className="flex items-center gap-2">
+          <Link to="/admin/users/create">
+            <Button className="flex items-center gap-2 bg-[#1F4032] hover:bg-[#1F4032]/90 text-white rounded-lg px-4 py-2 text-sm font-semibold">
               <Plus size={16} />
               Add User
             </Button>
@@ -173,14 +173,14 @@ export const UserList: React.FC = () => {
       </div>
 
       {error && (
-        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 flex items-start gap-3 text-sm">
+        <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-[#C1503A] flex items-start gap-3 text-sm">
           <ShieldAlert size={18} className="shrink-0 mt-0.5" />
           <span>{error}</span>
         </div>
       )}
 
       {/* Filters Toolbar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-900/30 p-4 border border-slate-900 rounded-xl">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-4 border border-[#E4E6DF] rounded-xl shadow-sm">
         <SearchBar
           placeholder="Search name or email..."
           value={search}
@@ -190,11 +190,11 @@ export const UserList: React.FC = () => {
         <div className="flex flex-wrap items-center gap-3">
           {/* Department Filter */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-slate-500 uppercase">Dept:</span>
+            <span className="text-xs font-bold text-[#90998C] uppercase">Dept:</span>
             <select
               value={selectedDept}
               onChange={(e) => setSelectedDept(e.target.value)}
-              className="glass-input !py-1 text-xs appearance-none bg-slate-950 pr-8"
+              className="glass-input !py-1 text-xs pr-8 bg-white text-[#24333E]"
             >
               <option value="">All Departments</option>
               {departments.map((d) => (
@@ -205,11 +205,11 @@ export const UserList: React.FC = () => {
 
           {/* Role Filter */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-slate-500 uppercase">Role:</span>
+            <span className="text-xs font-bold text-[#90998C] uppercase">Role:</span>
             <select
               value={selectedRole}
               onChange={(e) => setSelectedRole(e.target.value)}
-              className="glass-input !py-1 text-xs appearance-none bg-slate-950 pr-8"
+              className="glass-input !py-1 text-xs pr-8 bg-white text-[#24333E]"
             >
               <option value="">All Roles</option>
               {roles.map((r) => (

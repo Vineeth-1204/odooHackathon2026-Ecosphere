@@ -46,11 +46,11 @@ export const GoalProgressCard: React.FC<GoalProgressCardProps> = ({
       label: "Active",
       style: isOverBudget 
         ? "bg-red-500/10 text-red-400 border-red-500/20" 
-        : "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+        : "bg-emerald-500/10 text-[#1F4032] border-emerald-500/20"
     },
     ACHIEVED: {
       label: "Achieved",
-      style: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+      style: "bg-emerald-500/10 text-[#1F4032] border-emerald-500/20"
     },
     FAILED: {
       label: "Failed",
@@ -58,7 +58,7 @@ export const GoalProgressCard: React.FC<GoalProgressCardProps> = ({
     }
   };
 
-  const status = statusConfig[goal.status] || { label: goal.status, style: "bg-slate-800 text-slate-400 border-slate-700" };
+  const status = statusConfig[goal.status] || { label: goal.status, style: "bg-slate-800 text-[#90998C] border-[#E4E6DF]" };
 
   return (
     <div className="glass-panel glass-panel-hover rounded-xl p-5 flex flex-col justify-between h-full relative overflow-hidden group">
@@ -66,10 +66,10 @@ export const GoalProgressCard: React.FC<GoalProgressCardProps> = ({
       <div className="flex flex-col gap-3">
         <div className="flex items-start justify-between gap-3">
           <div className="flex flex-col gap-1">
-            <span className="text-[10px] font-bold text-brand-400 uppercase tracking-widest">
+            <span className="text-[10px] font-bold text-[#1F4032] uppercase tracking-widest">
               {goal.department?.name || "Company Wide Target"}
             </span>
-            <h4 className="font-bold text-slate-100 group-hover:text-white transition-colors tracking-tight line-clamp-1">
+            <h4 className="font-bold text-[#24333E] group-hover:text-[#24333E] transition-colors tracking-tight line-clamp-1">
               {goal.name}
             </h4>
           </div>
@@ -79,7 +79,7 @@ export const GoalProgressCard: React.FC<GoalProgressCardProps> = ({
         </div>
 
         {goal.description && (
-          <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-[#90998C] line-clamp-2 leading-relaxed">
             {goal.description}
           </p>
         )}
@@ -88,19 +88,19 @@ export const GoalProgressCard: React.FC<GoalProgressCardProps> = ({
       {/* Progress Metric */}
       <div className="my-5 flex flex-col gap-2">
         <div className="flex items-end justify-between text-xs font-semibold">
-          <div className="flex items-center gap-1.5 text-slate-400">
-            <Target size={14} className="text-emerald-400" />
+          <div className="flex items-center gap-1.5 text-[#90998C]">
+            <Target size={14} className="text-[#1F4032]" />
             <span>Target Cap</span>
           </div>
-          <span className="text-slate-200">
+          <span className="text-[#24333E]">
             {goal.currentValue.toLocaleString()} /{" "}
-            <span className="font-bold text-slate-100">{goal.targetValue.toLocaleString()}</span>{" "}
-            <span className="text-[10px] text-slate-500">{goal.unit}</span>
+            <span className="font-bold text-[#24333E]">{goal.targetValue.toLocaleString()}</span>{" "}
+            <span className="text-[10px] text-[#90998C]">{goal.unit}</span>
           </span>
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full h-2 bg-slate-900/60 rounded-full border border-slate-800/50 overflow-hidden relative">
+        <div className="w-full h-2 bg-white/60 rounded-full border border-[#E4E6DF]/50 overflow-hidden relative">
           <div
             className={`h-full rounded-full transition-all duration-500 ${
               isOverBudget 
@@ -111,7 +111,7 @@ export const GoalProgressCard: React.FC<GoalProgressCardProps> = ({
           />
         </div>
 
-        <div className="flex justify-between items-center text-[10px] text-slate-500 font-semibold uppercase mt-0.5">
+        <div className="flex justify-between items-center text-[10px] text-[#90998C] font-semibold uppercase mt-0.5">
           <span>{percent.toFixed(0)}% Utilized</span>
           {isOverBudget && (
             <span className="text-red-400 flex items-center gap-1">
@@ -122,24 +122,24 @@ export const GoalProgressCard: React.FC<GoalProgressCardProps> = ({
       </div>
 
       {/* Bottom Date/Footer Section */}
-      <div className="border-t border-slate-900 pt-3.5 flex items-center justify-between mt-auto">
-        <div className="flex items-center gap-1.5 text-slate-500 text-[10px] font-bold">
-          <Calendar size={12} className="text-slate-500" />
+      <div className="border-t border-[#E4E6DF] pt-3.5 flex items-center justify-between mt-auto">
+        <div className="flex items-center gap-1.5 text-[#90998C] text-[10px] font-bold">
+          <Calendar size={12} className="text-[#90998C]" />
           <span>{start} - {end}</span>
         </div>
         <div className="flex items-center gap-2">
           {daysLeft > 0 && goal.status === "ACTIVE" ? (
-            <span className="text-[10px] text-slate-400 font-semibold bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
+            <span className="text-[10px] text-[#90998C] font-semibold bg-white px-2 py-0.5 rounded border border-[#E4E6DF]">
               {daysLeft} days left
             </span>
           ) : (
-            <span className="text-[10px] text-slate-500 font-semibold">Ended</span>
+            <span className="text-[10px] text-[#90998C] font-semibold">Ended</span>
           )}
           
           {isAdminOrManager && onEdit && (
             <button
               onClick={() => onEdit(goal)}
-              className="text-[10px] text-brand-400 hover:text-brand-300 font-bold border-l border-slate-800 pl-2 cursor-pointer transition-colors"
+              className="text-[10px] text-[#1F4032] hover:text-brand-300 font-bold border-l border-[#E4E6DF] pl-2 cursor-pointer transition-colors"
             >
               Edit
             </button>

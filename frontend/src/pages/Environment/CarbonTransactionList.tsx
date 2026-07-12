@@ -67,7 +67,7 @@ export const CarbonTransactionList: React.FC = () => {
   }, [selectedDept, selectedCat, startDate, endDate]);
 
   const handleEdit = (tx: any) => {
-    navigate(`/environment/transactions/edit/${tx.id}`);
+    navigate(`/admin/environment/transactions/edit/${tx.id}`);
   };
 
   const handleDelete = async (id: string) => {
@@ -94,22 +94,22 @@ export const CarbonTransactionList: React.FC = () => {
   const totalFilteredEmissions = transactions.reduce((sum, tx) => sum + tx.emissions, 0);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6 text-left">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-100 tracking-tight flex items-center gap-2">
-            <Leaf className="text-emerald-400" />
+          <h1 className="text-2xl font-extrabold text-[#24333E] tracking-tight flex items-center gap-2">
+            <Leaf className="text-[#1F4032]" />
             Carbon Ledger Logs
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#90998C] mt-1">
             Audit history of logged resource usages (electricity, fuel, flights) and their carbon footprints.
           </p>
         </div>
 
         <Link
-          to="/environment/transactions/create"
-          className="flex items-center gap-1.5 bg-gradient-primary text-slate-950 font-bold text-xs px-4 py-2 rounded-lg bg-gradient-hover shadow-lg shadow-brand-500/15"
+          to="/admin/environment/transactions/create"
+          className="flex items-center gap-1.5 bg-[#1F4032] text-white font-bold text-xs px-4 py-2 rounded-lg hover:bg-[#1F4032]/90 shadow-lg shadow-sm"
         >
           <Plus size={14} /> Log Activity
         </Link>
@@ -117,7 +117,7 @@ export const CarbonTransactionList: React.FC = () => {
 
       {/* Filters Panel */}
       <div className="glass-panel rounded-xl p-5 flex flex-col gap-4">
-        <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider pb-2 border-b border-slate-900">
+        <div className="flex items-center gap-2 text-xs font-bold text-[#90998C] uppercase tracking-wider pb-2 border-b border-[#E4E6DF]">
           <SlidersHorizontal size={14} />
           <span>Filter Ledger Logs</span>
         </div>
@@ -125,11 +125,11 @@ export const CarbonTransactionList: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {/* Department */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Department</label>
+            <label className="text-[10px] font-bold text-[#90998C] uppercase tracking-wide">Department</label>
             <select
               value={selectedDept}
               onChange={(e) => setSelectedDept(e.target.value)}
-              className="glass-input py-2 text-xs bg-slate-950 border border-slate-800"
+              className="glass-input py-2 text-xs bg-white border border-[#E4E6DF]"
             >
               <option value="">All Departments</option>
               {departments.map((d) => (
@@ -142,11 +142,11 @@ export const CarbonTransactionList: React.FC = () => {
 
           {/* Category */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Category</label>
+            <label className="text-[10px] font-bold text-[#90998C] uppercase tracking-wide">Category</label>
             <select
               value={selectedCat}
               onChange={(e) => setSelectedCat(e.target.value)}
-              className="glass-input py-2 text-xs bg-slate-950 border border-slate-800"
+              className="glass-input py-2 text-xs bg-white border border-[#E4E6DF]"
             >
               <option value="">All Categories</option>
               {categories.map((c) => (
@@ -159,23 +159,23 @@ export const CarbonTransactionList: React.FC = () => {
 
           {/* Start Date */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Start Date</label>
+            <label className="text-[10px] font-bold text-[#90998C] uppercase tracking-wide">Start Date</label>
             <input
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="glass-input py-1.5 text-xs bg-slate-950 border border-slate-800 text-slate-300 w-full"
+              className="glass-input py-1.5 text-xs bg-white border border-[#E4E6DF] text-[#24333E] w-full"
             />
           </div>
 
           {/* End Date */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">End Date</label>
+            <label className="text-[10px] font-bold text-[#90998C] uppercase tracking-wide">End Date</label>
             <input
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="glass-input py-1.5 text-xs bg-slate-950 border border-slate-800 text-slate-300 w-full"
+              className="glass-input py-1.5 text-xs bg-white border border-[#E4E6DF] text-[#24333E] w-full"
             />
           </div>
         </div>
@@ -192,22 +192,22 @@ export const CarbonTransactionList: React.FC = () => {
       </div>
 
       {/* Aggregate Stats Bar */}
-      <div className="glass-panel rounded-xl p-4 flex items-center justify-between bg-slate-900/10 border-l-4 border-emerald-500 select-none">
+      <div className="glass-panel rounded-xl p-4 flex items-center justify-between bg-white/10 border-l-4 border-emerald-500 select-none">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-emerald-500/10 rounded-lg text-emerald-400">
+          <div className="p-2 bg-emerald-500/10 rounded-lg text-[#1F4032]">
             <Leaf size={16} />
           </div>
           <div className="flex flex-col">
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Filtered Cumulative Footprint</span>
-            <span className="text-sm font-extrabold text-slate-200">
+            <span className="text-[10px] font-bold text-[#90998C] uppercase tracking-wider">Filtered Cumulative Footprint</span>
+            <span className="text-sm font-extrabold text-[#24333E]">
               {totalFilteredEmissions.toLocaleString(undefined, { maximumFractionDigits: 1 })}{" "}
-              <span className="text-[10px] text-slate-500 font-semibold uppercase">kg CO2e</span>
+              <span className="text-[10px] text-[#90998C] font-semibold uppercase">kg CO2e</span>
             </span>
           </div>
         </div>
         <div className="text-right">
-          <span className="text-[10px] text-slate-500 font-semibold uppercase">Transactions Shown:</span>
-          <p className="text-sm font-bold text-slate-300">{transactions.length}</p>
+          <span className="text-[10px] text-[#90998C] font-semibold uppercase">Transactions Shown:</span>
+          <p className="text-sm font-bold text-[#24333E]">{transactions.length}</p>
         </div>
       </div>
 

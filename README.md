@@ -77,6 +77,3 @@ The database seed script generates the following default testing credentials:
 * **Password**: `userPassword123`
 * **Role**: `USER`
 * **Permissions**: General metrics reading, department lookup, Profile updates.
-=======
-# odooHackathon2026-Ecosphere
->>>>>>> ed287ec4c94c69f7cbe5a089167dbe5f209c5b97

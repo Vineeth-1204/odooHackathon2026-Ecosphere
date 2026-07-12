@@ -90,16 +90,16 @@ export const DepartmentList: React.FC = () => {
   return (
     <div className="flex flex-col gap-6 animate-in fade-in duration-300">
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-left">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-100 flex items-center gap-2">
-            Departments <Building className="text-brand-400" size={22} />
+          <h1 className="text-2xl font-bold tracking-tight text-[#24333E] flex items-center gap-2">
+            Departments <Building className="text-[#1F4032]" size={22} />
           </h1>
-          <p className="text-slate-400 text-sm mt-1">Configure company divisions and track department member counts</p>
+          <p className="text-[#90998C] text-sm mt-1">Configure company divisions and track department member counts</p>
         </div>
 
         {isAdmin && (
-          <Button className="flex items-center gap-2" onClick={handleCreateClick}>
+          <Button className="flex items-center gap-2 bg-[#1F4032] hover:bg-[#1F4032]/90 text-white rounded-lg px-4 py-2 text-sm font-semibold" onClick={handleCreateClick}>
             <Plus size={16} />
             Create Department
           </Button>
@@ -107,7 +107,7 @@ export const DepartmentList: React.FC = () => {
       </div>
 
       {error && (
-        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 flex items-start gap-3 text-sm">
+        <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-[#C1503A] flex items-start gap-3 text-sm">
           <ShieldAlert size={18} className="shrink-0 mt-0.5" />
           <span>{error}</span>
         </div>
@@ -116,10 +116,10 @@ export const DepartmentList: React.FC = () => {
       {isLoading ? (
         <Loading text="Retrieving departments..." />
       ) : departments.length === 0 ? (
-        <div className="glass-panel py-16 text-center text-slate-400 rounded-xl">
+        <div className="glass-panel py-16 text-center text-[#90998C] rounded-xl">
           <div className="text-sm font-medium">No departments registered.</div>
           {isAdmin && (
-            <Button variant="outline" size="sm" className="mt-4" onClick={handleCreateClick}>
+            <Button variant="outline" size="sm" className="mt-4 border-[#1F4032] text-[#1F4032]" onClick={handleCreateClick}>
               Add the first one
             </Button>
           )}

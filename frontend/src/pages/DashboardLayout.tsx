@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 
 export const DashboardLayout: React.FC = () => {
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-slate-950">
+    <div className="flex h-screen w-screen overflow-hidden bg-[#F3F5EF]">
       {/* Sidebar navigation */}
       <Sidebar />
 
@@ -22,4 +22,8 @@ export const DashboardLayout: React.FC = () => {
     </div>
   );
 };
+
+export const AdminLayout: React.FC = () => <DashboardLayout />;
+export const EmployeeLayout: React.FC = () => <DashboardLayout />;
+
 export default DashboardLayout;

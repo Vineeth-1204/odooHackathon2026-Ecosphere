@@ -1,6 +1,6 @@
-import { Response } from 'express';
-import prisma from '../lib/prisma';
-import { AuthRequest } from '../middleware/auth.middleware';
+import { Response } from "express";
+import prisma from "../lib/prisma";
+import { AuthRequest } from "../middleware/auth.middleware";
 
 // ── LIST CSR Activities ─────────────────────────────
 export const listCSRActivities = async (req: AuthRequest, res: Response): Promise<void> => {
@@ -9,16 +9,16 @@ export const listCSRActivities = async (req: AuthRequest, res: Response): Promis
 
     const activities = await prisma.cSRActivity.findMany({
       where: {
-        ...(status ? { status: status as any } : { status: 'ACTIVE' }),
-        ...(categoryId ? { categoryId: Number(categoryId) } : {}),
-        ...(departmentId ? { departmentId: Number(departmentId) } : {}),
-        ...(search ? { title: { contains: String(search), mode: 'insensitive' } } : {}),
+        ...(status ? { status: status as any } : { status: "ACTIVE" }),
+        ...(categoryId ? { categoryId: String(categoryId) } : {}),
+        ...(departmentId ? { departmentId: String(departmentId) } : {}),
+        ...(search ? { title: { contains: String(search), mode: "insensitive" } } : {}),
       },
       include: {
         category: { select: { id: true, name: true } },
         _count: { select: { participations: true } },
       },
-      orderBy: { date: 'desc' },
+      orderBy: { date: "desc" },
     });
 
     res.json({ success: true, data: activities });
@@ -39,7 +39,7 @@ export const getCSRActivity = async (req: AuthRequest, res: Response): Promise<v
       },
     });
     if (!activity) {
-      res.status(404).json({ success: false, message: 'CSR Activity not found' });
+      res.status(404).json({ success: false, message: "CSR Activity not found" });
       return;
     }
     res.json({ success: true, data: activity });
@@ -54,7 +54,7 @@ export const createCSRActivity = async (req: AuthRequest, res: Response): Promis
     const { title, description, categoryId, departmentId, date, maxParticipants, pointsReward } = req.body;
 
     if (!title || !categoryId || !date) {
-      res.status(400).json({ success: false, message: 'title, categoryId, and date are required' });
+      res.status(400).json({ success: false, message: "title, categoryId, and date are required" });
       return;
     }
 
@@ -62,8 +62,8 @@ export const createCSRActivity = async (req: AuthRequest, res: Response): Promis
       data: {
         title,
         description,
-        categoryId: Number(categoryId),
-        departmentId: departmentId ? Number(departmentId) : null,
+        categoryId: String(categoryId),
+        departmentId: departmentId ? String(departmentId) : null,
         date: new Date(date),
         maxParticipants: maxParticipants ? Number(maxParticipants) : null,
         pointsReward: pointsReward ? Number(pointsReward) : 10,
@@ -88,8 +88,8 @@ export const updateCSRActivity = async (req: AuthRequest, res: Response): Promis
       data: {
         ...(title && { title }),
         ...(description !== undefined && { description }),
-        ...(categoryId && { categoryId: Number(categoryId) }),
-        ...(departmentId !== undefined && { departmentId: departmentId ? Number(departmentId) : null }),
+        ...(categoryId && { categoryId: String(categoryId) }),
+        ...(departmentId !== undefined && { departmentId: departmentId ? String(departmentId) : null }),
         ...(date && { date: new Date(date) }),
         ...(maxParticipants !== undefined && { maxParticipants: maxParticipants ? Number(maxParticipants) : null }),
         ...(pointsReward !== undefined && { pointsReward: Number(pointsReward) }),
@@ -107,8 +107,8 @@ export const updateCSRActivity = async (req: AuthRequest, res: Response): Promis
 export const deleteCSRActivity = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const id = Number(req.params.id);
-    await prisma.cSRActivity.update({ where: { id }, data: { status: 'ARCHIVED' } });
-    res.json({ success: true, message: 'CSR Activity archived successfully' });
+    await prisma.cSRActivity.update({ where: { id }, data: { status: "ARCHIVED" } });
+    res.json({ success: true, message: "CSR Activity archived successfully" });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });
   }

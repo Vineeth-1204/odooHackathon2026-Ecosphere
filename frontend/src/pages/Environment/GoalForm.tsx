@@ -98,7 +98,7 @@ export const GoalForm: React.FC = () => {
         await goalService.createGoal(payload);
       }
 
-      navigate("/environment/goals");
+      navigate("/admin/environment/goals");
     } catch (err: any) {
       console.error(err);
       setError(err.message || "An error occurred while saving the sustainability goal.");
@@ -114,7 +114,7 @@ export const GoalForm: React.FC = () => {
     try {
       setLoading(true);
       await goalService.deleteGoal(id);
-      navigate("/environment/goals");
+      navigate("/admin/environment/goals");
     } catch (err: any) {
       setError(err.message || "Failed to delete the goal.");
       setLoading(false);
@@ -133,8 +133,8 @@ export const GoalForm: React.FC = () => {
     <div className="p-6 max-w-xl mx-auto space-y-6">
       {/* Back Button */}
       <Link
-        to="/environment/goals"
-        className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors w-max"
+        to="/admin/environment/goals"
+        className="flex items-center gap-1.5 text-xs text-[#90998C] hover:text-[#24333E] transition-colors w-max"
       >
         <ArrowLeft size={14} /> Back to list
       </Link>
@@ -142,11 +142,11 @@ export const GoalForm: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
-          <h1 className="text-xl font-extrabold text-slate-100 tracking-tight flex items-center gap-2">
-            <Target className="text-emerald-400" size={20} />
+          <h1 className="text-xl font-extrabold text-[#24333E] tracking-tight flex items-center gap-2">
+            <Target className="text-[#1F4032]" size={20} />
             {isEdit ? "Modify Target Goal" : "Create Sustainability Target"}
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#90998C] mt-1">
             {isEdit 
               ? "Update properties for this sustainability target." 
               : "Define a new target carbon cap limits and timelines."}
@@ -184,7 +184,7 @@ export const GoalForm: React.FC = () => {
 
           {/* Description */}
           <div className="flex flex-col gap-1.5 w-full">
-            <label htmlFor="goal-desc" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <label htmlFor="goal-desc" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
               Goal Description
             </label>
             <textarea
@@ -192,7 +192,7 @@ export const GoalForm: React.FC = () => {
               placeholder="Detail target strategies..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="glass-input h-20 text-xs w-full py-2 bg-slate-950/60 border border-slate-800 focus:border-brand-500 outline-none rounded-lg"
+              className="glass-input h-20 text-xs w-full py-2 bg-white/60 border border-[#E4E6DF] focus:border-brand-500 outline-none rounded-lg"
             />
           </div>
 
@@ -222,7 +222,7 @@ export const GoalForm: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Start Date */}
             <div className="flex flex-col gap-1.5 w-full">
-              <label htmlFor="goal-start" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="goal-start" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
                 Start Date
               </label>
               <input
@@ -231,13 +231,13 @@ export const GoalForm: React.FC = () => {
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
                 required
-                className="glass-input w-full bg-slate-950 border border-slate-800 text-slate-300 text-xs py-2"
+                className="glass-input w-full bg-white border border-[#E4E6DF] text-[#24333E] text-xs py-2"
               />
             </div>
 
             {/* End Date */}
             <div className="flex flex-col gap-1.5 w-full">
-              <label htmlFor="goal-end" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="goal-end" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
                 End Date
               </label>
               <input
@@ -246,7 +246,7 @@ export const GoalForm: React.FC = () => {
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 required
-                className="glass-input w-full bg-slate-950 border border-slate-800 text-slate-300 text-xs py-2"
+                className="glass-input w-full bg-white border border-[#E4E6DF] text-[#24333E] text-xs py-2"
               />
             </div>
           </div>
@@ -254,14 +254,14 @@ export const GoalForm: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Department (Optional) */}
             <div className="flex flex-col gap-1.5 w-full">
-              <label htmlFor="goal-dept" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="goal-dept" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
                 Department Owner (Optional)
               </label>
               <select
                 id="goal-dept"
                 value={departmentId}
                 onChange={(e) => setDepartmentId(e.target.value)}
-                className="glass-input w-full bg-slate-950 border border-slate-800 text-xs py-2"
+                className="glass-input w-full bg-white border border-[#E4E6DF] text-xs py-2"
               >
                 <option value="">Company-Wide Target (All Depts)</option>
                 {departments.map((d) => (
@@ -274,7 +274,7 @@ export const GoalForm: React.FC = () => {
 
             {/* Status */}
             <div className="flex flex-col gap-1.5 w-full">
-              <label htmlFor="goal-status" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="goal-status" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
                 Status
               </label>
               <select
@@ -282,7 +282,7 @@ export const GoalForm: React.FC = () => {
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
                 required
-                className="glass-input w-full bg-slate-950 border border-slate-800 text-xs py-2"
+                className="glass-input w-full bg-white border border-[#E4E6DF] text-xs py-2"
               >
                 <option value="ACTIVE">Active</option>
                 <option value="ACHIEVED">Achieved</option>
@@ -293,17 +293,17 @@ export const GoalForm: React.FC = () => {
         </div>
 
         {/* Buttons */}
-        <div className="flex items-center gap-3 pt-3 border-t border-slate-900 justify-end">
+        <div className="flex items-center gap-3 pt-3 border-t border-[#E4E6DF] justify-end">
           <Link
             to="/environment/goals"
-            className="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white rounded-lg hover:bg-slate-900/60 transition-colors"
+            className="px-4 py-2 text-xs font-semibold text-[#90998C] hover:text-[#24333E] rounded-lg hover:bg-white/60 transition-colors"
           >
             Cancel
           </Link>
           <Button
             type="submit"
             isLoading={loading}
-            className="flex items-center gap-1.5 text-xs font-bold text-slate-950"
+            className="flex items-center gap-1.5 text-xs font-bold text-white"
           >
             <Save size={14} /> Save Target
           </Button>

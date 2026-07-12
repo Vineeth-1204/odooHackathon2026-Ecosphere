@@ -107,7 +107,7 @@ export const CarbonTransactionForm: React.FC = () => {
         await carbonService.createTransaction(payload);
       }
 
-      navigate("/environment/transactions");
+      navigate("/admin/environment/transactions");
     } catch (err: any) {
       console.error(err);
       setError(err.message || "An error occurred while saving transaction.");
@@ -133,19 +133,19 @@ export const CarbonTransactionForm: React.FC = () => {
     <div className="p-6 max-w-xl mx-auto space-y-6">
       {/* Back Button */}
       <RouterLink
-        to="/environment/transactions"
-        className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors w-max"
+        to="/admin/environment/transactions"
+        className="flex items-center gap-1.5 text-xs text-[#90998C] hover:text-[#24333E] transition-colors w-max"
       >
         <ArrowLeft size={14} /> Back to ledger
       </RouterLink>
 
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-slate-100 tracking-tight flex items-center gap-2">
-          <Leaf className="text-emerald-400" size={20} />
+        <h1 className="text-xl font-extrabold text-[#24333E] tracking-tight flex items-center gap-2">
+          <Leaf className="text-[#1F4032]" size={20} />
           {isEdit ? "Modify Carbon Entry" : "Log Carbon Activity"}
         </h1>
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-[#90998C] mt-1">
           {isEdit 
             ? "Modify resource utilization parameters." 
             : "Record energy, travel, or waste utilization to calculate carbon equivalents."}
@@ -164,7 +164,7 @@ export const CarbonTransactionForm: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Date */}
             <div className="flex flex-col gap-1.5 w-full">
-              <label htmlFor="tx-date" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="tx-date" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
                 Activity Date
               </label>
               <input
@@ -173,13 +173,13 @@ export const CarbonTransactionForm: React.FC = () => {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
-                className="glass-input w-full bg-slate-950 border border-slate-800 text-slate-300 text-xs py-2"
+                className="glass-input w-full bg-white border border-[#E4E6DF] text-[#24333E] text-xs py-2"
               />
             </div>
 
             {/* Department */}
             <div className="flex flex-col gap-1.5 w-full">
-              <label htmlFor="tx-dept" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="tx-dept" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
                 Department Owner
               </label>
               <select
@@ -187,7 +187,7 @@ export const CarbonTransactionForm: React.FC = () => {
                 value={departmentId}
                 onChange={(e) => setDepartmentId(e.target.value)}
                 required
-                className="glass-input w-full bg-slate-950 border border-slate-800 text-xs py-2"
+                className="glass-input w-full bg-white border border-[#E4E6DF] text-xs py-2"
               >
                 <option value="">Select Department</option>
                 {departments.map((d) => (
@@ -212,7 +212,7 @@ export const CarbonTransactionForm: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Emission Factor */}
             <div className="flex flex-col gap-1.5 w-full">
-              <label htmlFor="tx-factor" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="tx-factor" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
                 Emission Source / Factor
               </label>
               <select
@@ -220,7 +220,7 @@ export const CarbonTransactionForm: React.FC = () => {
                 value={emissionFactorId}
                 onChange={(e) => setEmissionFactorId(e.target.value)}
                 required
-                className="glass-input w-full bg-slate-950 border border-slate-800 text-xs py-2"
+                className="glass-input w-full bg-white border border-[#E4E6DF] text-xs py-2"
               >
                 <option value="">Select Source Factor</option>
                 {factors.map((f) => (
@@ -251,14 +251,14 @@ export const CarbonTransactionForm: React.FC = () => {
         {selectedFactor && activityValue !== "" && (
           <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-between shadow-lg shadow-emerald-500/5 animate-pulse select-none">
             <div className="flex items-center gap-2">
-              <Leaf className="text-emerald-400" size={16} />
-              <span className="text-xs font-bold text-slate-300 uppercase tracking-wide">Real-time Emissions Estimate</span>
+              <Leaf className="text-[#1F4032]" size={16} />
+              <span className="text-xs font-bold text-[#24333E] uppercase tracking-wide">Real-time Emissions Estimate</span>
             </div>
             <div className="text-right">
-              <span className="text-xl font-black text-emerald-400 tracking-tight">
+              <span className="text-xl font-black text-[#1F4032] tracking-tight">
                 {calculatedEmissions.toLocaleString()}
               </span>
-              <span className="text-[10px] text-slate-400 font-bold ml-1 uppercase">
+              <span className="text-[10px] text-[#90998C] font-bold ml-1 uppercase">
                 kg CO2e
               </span>
             </div>
@@ -266,17 +266,17 @@ export const CarbonTransactionForm: React.FC = () => {
         )}
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-3 pt-3 border-t border-slate-900 justify-end">
+        <div className="flex items-center gap-3 pt-3 border-t border-[#E4E6DF] justify-end">
           <RouterLink
             to="/environment/transactions"
-            className="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white rounded-lg hover:bg-slate-900/60 transition-colors"
+            className="px-4 py-2 text-xs font-semibold text-[#90998C] hover:text-[#24333E] rounded-lg hover:bg-white/60 transition-colors"
           >
             Cancel
           </RouterLink>
           <Button
             type="submit"
             isLoading={loading}
-            className="flex items-center gap-1.5 text-xs font-bold text-slate-950"
+            className="flex items-center gap-1.5 text-xs font-bold text-white"
           >
             <Save size={14} /> Log Entry
           </Button>

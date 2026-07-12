@@ -89,7 +89,7 @@ export const UserForm: React.FC = () => {
         }
         await userService.createUser(payload);
       }
-      navigate("/users");
+      navigate("/admin/users");
     } catch (err: any) {
       console.error(err);
       setError(err.message || "Failed to save user account details.");
@@ -105,16 +105,16 @@ export const UserForm: React.FC = () => {
   return (
     <div className="max-w-2xl mx-auto flex flex-col gap-6 animate-in fade-in duration-200">
       {/* Back link */}
-      <Link to="/users" className="flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors w-fit">
+      <Link to="/admin/users" className="flex items-center gap-2 text-xs font-semibold text-[#90998C] hover:text-[#24333E] transition-colors w-fit">
         <ArrowLeft size={14} />
         Back to Users List
       </Link>
 
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-slate-100">
+        <h1 className="text-2xl font-bold tracking-tight text-[#24333E]">
           {isEditMode ? "Edit User Account" : "Add New User Account"}
         </h1>
-        <p className="text-slate-400 text-sm mt-1">
+        <p className="text-[#90998C] text-sm mt-1">
           {isEditMode ? "Modify details, edit permissions, or reset password" : "Create login credentials and set system roles"}
         </p>
       </div>
@@ -176,14 +176,14 @@ export const UserForm: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {/* Role selector */}
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="role" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <label htmlFor="role" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
               System Role
             </label>
             <select
               id="role"
               value={roleId}
               onChange={(e) => setRoleId(e.target.value)}
-              className="glass-input w-full appearance-none bg-slate-950 pr-8"
+              className="glass-input w-full appearance-none bg-white pr-8"
               required
               disabled={isSaving}
             >
@@ -196,14 +196,14 @@ export const UserForm: React.FC = () => {
 
           {/* Department selector */}
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="department" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <label htmlFor="department" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
               Department
             </label>
             <select
               id="department"
               value={departmentId}
               onChange={(e) => setDepartmentId(e.target.value)}
-              className="glass-input w-full appearance-none bg-slate-950 pr-8"
+              className="glass-input w-full appearance-none bg-white pr-8"
               disabled={isSaving}
             >
               <option value="">Select Department (Optional)</option>
@@ -215,7 +215,7 @@ export const UserForm: React.FC = () => {
         </div>
 
         {/* Action Panel */}
-        <div className="flex justify-end gap-3 border-t border-slate-800/80 pt-5 mt-4">
+        <div className="flex justify-end gap-3 border-t border-[#E4E6DF]/80 pt-5 mt-4">
           <Link to="/users">
             <Button variant="ghost" disabled={isSaving}>Cancel</Button>
           </Link>

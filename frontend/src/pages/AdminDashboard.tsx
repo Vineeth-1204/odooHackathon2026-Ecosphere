@@ -56,27 +56,27 @@ export const AdminDashboard: React.FC = () => {
   const govWeight = parseFloat(settingsObj["esg_score_weight_governance"]) || 0.3;
 
   return (
-    <div className="flex flex-col gap-8 animate-in fade-in duration-300">
+    <div className="flex flex-col gap-8 animate-in fade-in duration-300 text-left select-none">
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-100 flex items-center gap-2.5">
-            Admin Dashboard <Sparkles className="text-brand-400" size={20} />
+          <h1 className="text-2xl font-bold tracking-tight text-[#24333E] flex items-center gap-2.5">
+            Admin Dashboard <Sparkles className="text-[#1F4032]" size={20} />
           </h1>
-          <p className="text-slate-400 text-sm mt-1">Platform-wide statistics and settings control panel</p>
+          <p className="text-[#90998C] text-sm mt-1">Platform-wide statistics and settings control panel</p>
         </div>
 
-        <div className="flex items-center gap-2 bg-slate-900 border border-slate-800/80 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400">
-          <Database size={14} className="text-brand-500" />
+        <div className="flex items-center gap-2 bg-white border border-[#E4E6DF] px-3 py-1.5 rounded-lg text-xs font-semibold text-[#90998C]">
+          <Database size={14} className="text-[#1F4032]" />
           <span>PostgreSQL Database:</span>
-          <span className="text-brand-400 font-bold flex items-center gap-1 pl-1">
-            <CheckCircle size={10} className="fill-brand-500/20" /> Connected
+          <span className="text-[#1F4032] font-bold flex items-center gap-1 pl-1">
+            <CheckCircle size={10} /> Connected
           </span>
         </div>
       </div>
 
       {error && (
-        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 flex items-start gap-3 text-sm">
+        <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-[#C1503A] flex items-start gap-3 text-sm">
           <ShieldAlert size={18} className="shrink-0 mt-0.5" />
           <span>{error}</span>
         </div>
@@ -85,45 +85,45 @@ export const AdminDashboard: React.FC = () => {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {/* Users Card */}
-        <div className="glass-panel rounded-xl p-5 flex items-center justify-between">
+        <div className="glass-panel rounded-xl p-5 flex items-center justify-between shadow-sm">
           <div className="flex flex-col gap-1">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Active Users</span>
-            <span className="text-3xl font-extrabold text-slate-100">{stats.usersCount}</span>
+            <span className="text-xs font-bold text-[#90998C] uppercase tracking-widest">Active Users</span>
+            <span className="text-3xl font-extrabold text-[#24333E]">{stats.usersCount}</span>
           </div>
-          <div className="p-3.5 rounded-lg bg-brand-500/10 text-brand-400">
+          <div className="p-3.5 rounded-lg bg-[#EAF0EC] text-[#1F4032]">
             <Users size={22} />
           </div>
         </div>
 
         {/* Departments Card */}
-        <div className="glass-panel rounded-xl p-5 flex items-center justify-between">
+        <div className="glass-panel rounded-xl p-5 flex items-center justify-between shadow-sm">
           <div className="flex flex-col gap-1">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Departments</span>
-            <span className="text-3xl font-extrabold text-slate-100">{stats.deptsCount}</span>
+            <span className="text-xs font-bold text-[#90998C] uppercase tracking-widest">Departments</span>
+            <span className="text-3xl font-extrabold text-[#24333E]">{stats.deptsCount}</span>
           </div>
-          <div className="p-3.5 rounded-lg bg-blue-500/10 text-blue-400">
+          <div className="p-3.5 rounded-lg bg-blue-50 text-blue-500">
             <Building2 size={22} />
           </div>
         </div>
 
         {/* Categories Card */}
-        <div className="glass-panel rounded-xl p-5 flex items-center justify-between">
+        <div className="glass-panel rounded-xl p-5 flex items-center justify-between shadow-sm">
           <div className="flex flex-col gap-1">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">ESG Categories</span>
-            <span className="text-3xl font-extrabold text-slate-100">{stats.catsCount}</span>
+            <span className="text-xs font-bold text-[#90998C] uppercase tracking-widest">ESG Categories</span>
+            <span className="text-3xl font-extrabold text-[#24333E]">{stats.catsCount}</span>
           </div>
-          <div className="p-3.5 rounded-lg bg-teal-500/10 text-teal-400">
+          <div className="p-3.5 rounded-lg bg-teal-50 text-teal-600">
             <FolderOpen size={22} />
           </div>
         </div>
 
         {/* Settings Card */}
-        <div className="glass-panel rounded-xl p-5 flex items-center justify-between">
+        <div className="glass-panel rounded-xl p-5 flex items-center justify-between shadow-sm">
           <div className="flex flex-col gap-1">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">System Toggles</span>
-            <span className="text-3xl font-extrabold text-slate-100">{stats.settingsCount}</span>
+            <span className="text-xs font-bold text-[#90998C] uppercase tracking-widest">System Toggles</span>
+            <span className="text-3xl font-extrabold text-[#24333E]">{stats.settingsCount}</span>
           </div>
-          <div className="p-3.5 rounded-lg bg-purple-500/10 text-purple-400">
+          <div className="p-3.5 rounded-lg bg-purple-50 text-purple-500">
             <Sliders size={22} />
           </div>
         </div>
@@ -131,36 +131,36 @@ export const AdminDashboard: React.FC = () => {
 
       {/* Main Content Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* ESG Weights Chart Panel (Visual Tailwind Component) */}
-        <div className="glass-panel rounded-xl p-6 lg:col-span-2 flex flex-col gap-5">
+        {/* ESG Weights Chart Panel */}
+        <div className="glass-panel rounded-xl p-6 lg:col-span-2 flex flex-col gap-5 shadow-sm">
           <div>
-            <h3 className="text-base font-bold text-slate-100">Overall ESG Weights Setup</h3>
-            <p className="text-xs text-slate-400 mt-1">Configured weights used by the scoring engine to evaluate departments</p>
+            <h3 className="text-base font-bold text-[#24333E]">Overall ESG Weights Setup</h3>
+            <p className="text-xs text-[#90998C] mt-1">Configured weights used by the scoring engine to evaluate departments</p>
           </div>
 
           <div className="flex flex-col gap-4 mt-2">
             {/* Environmental */}
             <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center text-xs font-semibold">
-                <span className="text-slate-300 flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded bg-emerald-500" /> Environmental
+                <span className="text-[#24333E] flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded bg-[#1F4032]" /> Environmental
                 </span>
-                <span className="text-slate-200">{(envWeight * 100).toFixed(0)}%</span>
+                <span className="text-[#24333E]">{(envWeight * 100).toFixed(0)}%</span>
               </div>
-              <div className="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-800">
-                <div className="bg-emerald-500 h-full rounded-full" style={{ width: `${envWeight * 100}%` }} />
+              <div className="w-full bg-[#F3F5EF] rounded-full h-2 overflow-hidden border border-[#E4E6DF]">
+                <div className="bg-[#1F4032] h-full rounded-full" style={{ width: `${envWeight * 100}%` }} />
               </div>
             </div>
 
             {/* Social */}
             <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center text-xs font-semibold">
-                <span className="text-slate-300 flex items-center gap-1.5">
+                <span className="text-[#24333E] flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded bg-blue-500" /> Social & Team Play
                 </span>
-                <span className="text-slate-200">{(socWeight * 100).toFixed(0)}%</span>
+                <span className="text-[#24333E]">{(socWeight * 100).toFixed(0)}%</span>
               </div>
-              <div className="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-800">
+              <div className="w-full bg-[#F3F5EF] rounded-full h-2 overflow-hidden border border-[#E4E6DF]">
                 <div className="bg-blue-500 h-full rounded-full" style={{ width: `${socWeight * 100}%` }} />
               </div>
             </div>
@@ -168,51 +168,51 @@ export const AdminDashboard: React.FC = () => {
             {/* Governance */}
             <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center text-xs font-semibold">
-                <span className="text-slate-300 flex items-center gap-1.5">
+                <span className="text-[#24333E] flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded bg-purple-500" /> Governance Policies
                 </span>
-                <span className="text-slate-200">{(govWeight * 100).toFixed(0)}%</span>
+                <span className="text-[#24333E]">{(govWeight * 100).toFixed(0)}%</span>
               </div>
-              <div className="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-800">
+              <div className="w-full bg-[#F3F5EF] rounded-full h-2 overflow-hidden border border-[#E4E6DF]">
                 <div className="bg-purple-500 h-full rounded-full" style={{ width: `${govWeight * 100}%` }} />
               </div>
             </div>
           </div>
 
-          <div className="mt-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+          <div className="mt-4 p-4 rounded-xl bg-[#F3F5EF] border border-[#E4E6DF] text-xs text-[#90998C] flex items-center justify-between">
             <span>Weights configured dynamically in system settings.</span>
-            <span className="font-semibold text-brand-400">Total Sum: {((envWeight + socWeight + govWeight) * 100).toFixed(0)}%</span>
+            <span className="font-bold text-[#1F4032]">Total Sum: {((envWeight + socWeight + govWeight) * 100).toFixed(0)}%</span>
           </div>
         </div>
 
         {/* Feature Toggles Status Card */}
-        <div className="glass-panel rounded-xl p-6 flex flex-col justify-between">
+        <div className="glass-panel rounded-xl p-6 flex flex-col justify-between shadow-sm">
           <div>
-            <h3 className="text-base font-bold text-slate-100 mb-4">Feature Toggles</h3>
+            <h3 className="text-base font-bold text-[#24333E] mb-4">Feature Toggles</h3>
             <div className="flex flex-col gap-4">
-              <div className="flex items-center justify-between border-b border-slate-900 pb-3">
+              <div className="flex items-center justify-between border-b border-[#E4E6DF] pb-3">
                 <div className="flex flex-col">
-                  <span className="text-xs font-semibold text-slate-300">Public Registration</span>
-                  <span className="text-[10px] text-slate-500">Allow users to sign up via Register page</span>
+                  <span className="text-xs font-semibold text-[#24333E]">Public Registration</span>
+                  <span className="text-[10px] text-[#90998C]">Allow users to sign up via Register page</span>
                 </div>
                 <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                   settingsObj["allow_user_registration"] === "true" 
-                    ? "bg-brand-500/10 text-brand-400" 
-                    : "bg-red-500/10 text-red-400"
+                    ? "bg-[#EAF0EC] text-[#1F4032]" 
+                    : "bg-red-50 text-[#C1503A]"
                 }`}>
                   {settingsObj["allow_user_registration"] === "true" ? "ACTIVE" : "DISABLED"}
                 </span>
               </div>
 
-              <div className="flex items-center justify-between border-b border-slate-900 pb-3">
+              <div className="flex items-center justify-between border-b border-[#E4E6DF] pb-3">
                 <div className="flex flex-col">
-                  <span className="text-xs font-semibold text-slate-300">Maintenance Mode</span>
-                  <span className="text-[10px] text-slate-500">Lock non-admins out of the backend</span>
+                  <span className="text-xs font-semibold text-[#24333E]">Maintenance Mode</span>
+                  <span className="text-[10px] text-[#90998C]">Lock non-admins out of the backend</span>
                 </div>
                 <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                   settingsObj["maintenance_mode"] === "true" 
-                    ? "bg-red-500/10 text-red-400" 
-                    : "bg-brand-500/10 text-brand-400"
+                    ? "bg-red-50 text-[#C1503A]" 
+                    : "bg-[#EAF0EC] text-[#1F4032]"
                 }`}>
                   {settingsObj["maintenance_mode"] === "true" ? "MAINTENANCE" : "ONLINE"}
                 </span>
@@ -220,16 +220,16 @@ export const AdminDashboard: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
-                  <span className="text-xs font-semibold text-slate-300">System Name</span>
-                  <span className="text-[10px] text-slate-500">Global display branding header</span>
+                  <span className="text-xs font-semibold text-[#24333E]">System Name</span>
+                  <span className="text-[10px] text-[#90998C]">Global display branding header</span>
                 </div>
-                <span className="text-xs text-slate-200 font-medium">
+                <span className="text-xs text-[#24333E] font-medium">
                   {settingsObj["site_name"] || "Ecosphere"}
                 </span>
               </div>
             </div>
           </div>
-          <div className="text-[10px] text-slate-500 pt-6 border-t border-slate-900 mt-4 leading-normal">
+          <div className="text-[10px] text-[#90998C] pt-6 border-t border-[#E4E6DF] mt-4 leading-normal">
             To update these features, navigate to the **Settings** control panel on the sidebar.
           </div>
         </div>

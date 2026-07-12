@@ -14,7 +14,7 @@ export const EmissionChart: React.FC<EmissionChartProps> = ({ data }) => {
 
   if (data.length === 0 || total === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-64 text-slate-500 text-sm">
+      <div className="flex flex-col items-center justify-center h-64 text-[#90998C] text-sm">
         No emissions logged yet.
       </div>
     );
@@ -97,10 +97,10 @@ export const EmissionChart: React.FC<EmissionChartProps> = ({ data }) => {
           })}
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-2xl font-bold text-slate-100 tracking-tight">
+          <span className="text-2xl font-bold text-[#24333E] tracking-tight">
             {total.toLocaleString(undefined, { maximumFractionDigits: 1 })}
           </span>
-          <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">
+          <span className="text-[10px] text-[#90998C] font-semibold uppercase tracking-wider">
             kg CO2e
           </span>
         </div>
@@ -113,15 +113,15 @@ export const EmissionChart: React.FC<EmissionChartProps> = ({ data }) => {
             <div className="flex items-center justify-between text-xs font-semibold">
               <div className="flex items-center gap-2">
                 <span className={`w-2.5 h-2.5 rounded-full ${sector.bgColor}`} />
-                <span className="text-slate-300 truncate max-w-[120px]">{sector.name}</span>
+                <span className="text-[#24333E] truncate max-w-[120px]">{sector.name}</span>
               </div>
-              <div className="text-right text-slate-400">
-                <span className="text-slate-200">{sector.value.toLocaleString(undefined, { maximumFractionDigits: 1 })} kg</span>
-                <span className="text-[10px] ml-1.5 text-slate-500">({sector.percent.toFixed(1)}%)</span>
+              <div className="text-right text-[#90998C]">
+                <span className="text-[#24333E]">{sector.value.toLocaleString(undefined, { maximumFractionDigits: 1 })} kg</span>
+                <span className="text-[10px] ml-1.5 text-[#90998C]">({sector.percent.toFixed(1)}%)</span>
               </div>
             </div>
             {/* Miniature progress bar */}
-            <div className="w-full h-1 bg-slate-900 rounded-full overflow-hidden">
+            <div className="w-full h-1 bg-white rounded-full overflow-hidden">
               <div
                 className={`h-full rounded-full ${sector.bgColor}`}
                 style={{ width: `${sector.percent}%` }}

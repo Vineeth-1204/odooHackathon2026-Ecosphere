@@ -11,13 +11,25 @@ import userRoutes from "./routes/user.routes";
 import departmentRoutes from "./routes/department.routes";
 import categoryRoutes from "./routes/category.routes";
 import settingsRoutes from "./routes/settings.routes";
-<<<<<<< HEAD
-=======
 import emissionRoutes from "./routes/emission.routes";
 import carbonRoutes from "./routes/carbon.routes";
 import goalRoutes from "./routes/goal.routes";
 import productRoutes from "./routes/product.routes";
->>>>>>> d3e4a3e (Environmental Module)
+
+// Governance Module Routes
+import policyRoutes from "./routes/policy.routes";
+import auditRoutes from "./routes/audit.routes";
+import complianceRoutes from "./routes/compliance.routes";
+import reportRoutes from "./routes/report.routes";
+import notificationRoutes from "./routes/notification.routes";
+import dashboardRoutes from "./routes/dashboard.routes";
+
+// Social & Gamification Routes
+import csrRoutes from "./src/routes/csr.routes";
+import challengeRoutes from "./src/routes/challenge.routes";
+import badgeRoutes from "./src/routes/badge.routes";
+import rewardRoutes from "./src/routes/reward.routes";
+import leaderboardRoutes from "./src/routes/leaderboard.routes";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -43,13 +55,25 @@ app.use("/api/users", userRoutes);
 app.use("/api/departments", departmentRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/settings", settingsRoutes);
-<<<<<<< HEAD
-=======
 app.use("/api/emissions", emissionRoutes);
 app.use("/api/carbon", carbonRoutes);
 app.use("/api/goals", goalRoutes);
 app.use("/api/products", productRoutes);
->>>>>>> d3e4a3e (Environmental Module)
+
+// Governance Module Routes mounting
+app.use("/api/policies", policyRoutes);
+app.use("/api/audits", auditRoutes);
+app.use("/api/compliance", complianceRoutes);
+app.use("/api/reports", reportRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+
+// Social & Gamification Routes mounting
+app.use("/api/csr", csrRoutes);
+app.use("/api/challenges", challengeRoutes);
+app.use("/api/badges", badgeRoutes);
+app.use("/api/rewards", rewardRoutes);
+app.use("/api/leaderboard", leaderboardRoutes);
 
 // Global Error Handler
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

@@ -23,11 +23,11 @@ export const Pagination: React.FC<PaginationProps> = ({
   const endIdx = Math.min(currentPage * limit, totalItems);
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-slate-800/80 bg-slate-900/10">
-      <div className="text-xs text-slate-400">
-        Showing <span className="font-semibold text-slate-200">{startIdx}</span> to{" "}
-        <span className="font-semibold text-slate-200">{endIdx}</span> of{" "}
-        <span className="font-semibold text-slate-200">{totalItems}</span> entries
+    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-[#E4E6DF]/80 bg-white/10">
+      <div className="text-xs text-[#90998C]">
+        Showing <span className="font-semibold text-[#24333E]">{startIdx}</span> to{" "}
+        <span className="font-semibold text-[#24333E]">{endIdx}</span> of{" "}
+        <span className="font-semibold text-[#24333E]">{totalItems}</span> entries
       </div>
       <div className="flex items-center gap-2">
         <Button
@@ -50,7 +50,7 @@ export const Pagination: React.FC<PaginationProps> = ({
                 className={`w-7 h-7 text-xs font-semibold rounded-md flex items-center justify-center transition-colors ${
                   currentPage === pageNum
                     ? "bg-brand-500 text-white font-bold"
-                    : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    : "text-[#90998C] hover:text-[#24333E] hover:bg-[#F3F5EF]"
                 }`}
               >
                 {pageNum}

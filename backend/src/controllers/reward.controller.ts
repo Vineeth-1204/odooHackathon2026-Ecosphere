@@ -1,14 +1,14 @@
-import { Response } from 'express';
-import prisma from '../lib/prisma';
-import { AuthRequest } from '../middleware/auth.middleware';
-import { redeemReward } from '../services/xp.service';
+import { Response } from "express";
+import prisma from "../lib/prisma";
+import { AuthRequest } from "../middleware/auth.middleware";
+import { redeemReward } from "../services/xp.service";
 
 // ── LIST all active rewards ──────────────────────────
 export const listRewards = async (_req: AuthRequest, res: Response): Promise<void> => {
   try {
     const rewards = await prisma.reward.findMany({
-      where: { status: 'ACTIVE' },
-      orderBy: { pointsCost: 'asc' },
+      where: { status: "ACTIVE" },
+      orderBy: { pointsCost: "asc" },
     });
     res.json({ success: true, data: rewards });
   } catch (err: any) {
@@ -22,7 +22,7 @@ export const getReward = async (req: AuthRequest, res: Response): Promise<void> 
     const id = Number(req.params.id);
     const reward = await prisma.reward.findUnique({ where: { id } });
     if (!reward) {
-      res.status(404).json({ success: false, message: 'Reward not found' });
+      res.status(404).json({ success: false, message: "Reward not found" });
       return;
     }
     res.json({ success: true, data: reward });
@@ -37,7 +37,7 @@ export const createReward = async (req: AuthRequest, res: Response): Promise<voi
     const { name, description, pointsCost, stock } = req.body;
 
     if (!name || pointsCost === undefined) {
-      res.status(400).json({ success: false, message: 'name and pointsCost are required' });
+      res.status(400).json({ success: false, message: "name and pointsCost are required" });
       return;
     }
 
@@ -83,8 +83,8 @@ export const updateReward = async (req: AuthRequest, res: Response): Promise<voi
 export const archiveReward = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const id = Number(req.params.id);
-    await prisma.reward.update({ where: { id }, data: { status: 'ARCHIVED' } });
-    res.json({ success: true, message: 'Reward archived' });
+    await prisma.reward.update({ where: { id }, data: { status: "ARCHIVED" } });
+    res.json({ success: true, message: "Reward archived" });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });
   }
@@ -98,7 +98,7 @@ export const redeemRewardHandler = async (req: AuthRequest, res: Response): Prom
 
     await redeemReward(userId, rewardId);
 
-    res.json({ success: true, message: 'Reward redeemed successfully!' });
+    res.json({ success: true, message: "Reward redeemed successfully!" });
   } catch (err: any) {
     res.status(400).json({ success: false, message: err.message });
   }
@@ -111,7 +111,7 @@ export const getMyRedemptions = async (req: AuthRequest, res: Response): Promise
     const redemptions = await prisma.rewardRedemption.findMany({
       where: { userId },
       include: { reward: { select: { id: true, name: true, description: true } } },
-      orderBy: { redeemedAt: 'desc' },
+      orderBy: { redeemedAt: "desc" },
     });
     res.json({ success: true, data: redemptions });
   } catch (err: any) {
@@ -124,12 +124,22 @@ export const getAllRedemptions = async (_req: AuthRequest, res: Response): Promi
   try {
     const redemptions = await prisma.rewardRedemption.findMany({
       include: {
-        user: { select: { id: true, name: true, email: true } },
+        user: { select: { id: true, firstName: true, lastName: true, email: true } },
         reward: { select: { id: true, name: true } },
       },
-      orderBy: { redeemedAt: 'desc' },
+      orderBy: { redeemedAt: "desc" },
     });
-    res.json({ success: true, data: redemptions });
+
+    const mapped = redemptions.map((r) => ({
+      ...r,
+      user: {
+        id: r.user.id,
+        name: `${r.user.firstName} ${r.user.lastName}`,
+        email: r.user.email,
+      },
+    }));
+
+    res.json({ success: true, data: mapped });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });
   }

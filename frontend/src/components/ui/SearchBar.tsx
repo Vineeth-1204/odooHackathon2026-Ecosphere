@@ -51,7 +51,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       {localVal && (
         <button
           onClick={handleClear}
-          className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white p-0.5 rounded hover:bg-slate-800 transition-colors"
+          className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#90998C] hover:text-[#24333E] p-0.5 rounded hover:bg-[#F3F5EF] transition-colors"
         >
           <X size={14} />
         </button>

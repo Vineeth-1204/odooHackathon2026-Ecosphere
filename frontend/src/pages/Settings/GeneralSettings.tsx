@@ -46,7 +46,7 @@ export const GeneralSettings: React.FC<GeneralSettingsProps> = ({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       {success && (
-        <div className="p-3 text-xs font-semibold rounded bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center gap-2">
+        <div className="p-3 text-xs font-semibold rounded bg-brand-500/10 border border-brand-500/20 text-[#1F4032] flex items-center gap-2">
           <CheckCircle size={16} />
           <span>{success}</span>
         </div>

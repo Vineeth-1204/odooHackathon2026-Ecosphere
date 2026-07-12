@@ -75,7 +75,7 @@ export const ScoreWeightSettings: React.FC<ScoreWeightSettingsProps> = ({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       {success && (
-        <div className="p-3 text-xs font-semibold rounded bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center gap-2">
+        <div className="p-3 text-xs font-semibold rounded bg-brand-500/10 border border-brand-500/20 text-[#1F4032] flex items-center gap-2">
           <CheckCircle size={16} />
           <span>{success}</span>
         </div>
@@ -132,10 +132,10 @@ export const ScoreWeightSettings: React.FC<ScoreWeightSettingsProps> = ({
         />
       </div>
 
-      <div className="p-4 bg-slate-950/40 rounded-lg border border-slate-900 text-xs text-slate-400 leading-normal">
-        <span className="font-bold text-slate-300 block mb-1">Calculation Logic:</span>
-        Overall ESG score is computed as: <code className="text-brand-400">Score = (E_score * E_weight) + (S_score * S_weight) + (G_score * G_weight)</code>.
-        The system requires the sum of all coefficients to equal exactly <span className="font-bold text-slate-300">1.00</span>.
+      <div className="p-4 bg-white/40 rounded-lg border border-[#E4E6DF] text-xs text-[#90998C] leading-normal">
+        <span className="font-bold text-[#24333E] block mb-1">Calculation Logic:</span>
+        Overall ESG score is computed as: <code className="text-[#1F4032]">Score = (E_score * E_weight) + (S_score * S_weight) + (G_score * G_weight)</code>.
+        The system requires the sum of all coefficients to equal exactly <span className="font-bold text-[#24333E]">1.00</span>.
       </div>
 
       <Button type="submit" className="w-fit self-end mt-2 flex items-center gap-2" isLoading={isSaving}>

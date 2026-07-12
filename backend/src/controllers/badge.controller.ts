@@ -91,7 +91,7 @@ export const deleteBadge = async (req: AuthRequest, res: Response): Promise<void
 export const manualAwardBadge = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const { userId, badgeId } = req.body;
-    await awardBadge(Number(userId), Number(badgeId));
+    await awardBadge(String(userId), Number(badgeId));
     res.json({ success: true, message: 'Badge awarded manually' });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });

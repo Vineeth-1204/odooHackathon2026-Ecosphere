@@ -45,22 +45,22 @@ export const FeatureToggle: React.FC<FeatureToggleProps> = ({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-6">
       {success && (
-        <div className="p-3 text-xs font-semibold rounded bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center gap-2">
+        <div className="p-3 text-xs font-semibold rounded bg-brand-500/10 border border-brand-500/20 text-[#1F4032] flex items-center gap-2">
           <CheckCircle size={16} />
           <span>{success}</span>
         </div>
       )}
 
       {/* Reg Toggle */}
-      <div className="flex items-center justify-between p-4 bg-slate-950/40 rounded-lg border border-slate-900">
+      <div className="flex items-center justify-between p-4 bg-white/40 rounded-lg border border-[#E4E6DF]">
         <div className="flex flex-col">
-          <span className="text-xs font-semibold text-slate-300">Public User Registration</span>
-          <span className="text-[10px] text-slate-500 mt-0.5">Allow employees to register accounts on the signup page</span>
+          <span className="text-xs font-semibold text-[#24333E]">Public User Registration</span>
+          <span className="text-[10px] text-[#90998C] mt-0.5">Allow employees to register accounts on the signup page</span>
         </div>
         <button
           type="button"
           onClick={() => setAllowReg(!allowReg)}
-          className={`transition-colors ${allowReg ? "text-brand-400" : "text-slate-600"}`}
+          className={`transition-colors ${allowReg ? "text-[#1F4032]" : "text-slate-600"}`}
           disabled={isSaving}
         >
           {allowReg ? <ToggleRight size={38} /> : <ToggleLeft size={38} />}
@@ -68,10 +68,10 @@ export const FeatureToggle: React.FC<FeatureToggleProps> = ({
       </div>
 
       {/* Maintenance Toggle */}
-      <div className="flex items-center justify-between p-4 bg-slate-950/40 rounded-lg border border-slate-900">
+      <div className="flex items-center justify-between p-4 bg-white/40 rounded-lg border border-[#E4E6DF]">
         <div className="flex flex-col">
-          <span className="text-xs font-semibold text-slate-300">Maintenance & Update Mode</span>
-          <span className="text-[10px] text-slate-500 mt-0.5">Restrict login access only to administrators for system upgrades</span>
+          <span className="text-xs font-semibold text-[#24333E]">Maintenance & Update Mode</span>
+          <span className="text-[10px] text-[#90998C] mt-0.5">Restrict login access only to administrators for system upgrades</span>
         </div>
         <button
           type="button"

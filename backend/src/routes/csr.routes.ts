@@ -25,7 +25,7 @@ router.get('/', requireAuth, listCSRActivities);
 router.get('/participations/all', requireAuth, requireRole('ADMIN', 'MANAGER'), getAllParticipations);
 router.get('/participations/my', requireAuth, getMyParticipations);
 router.get('/:id', requireAuth, getCSRActivity);
-router.post('/', requireAuth, requireRole('ADMIN', 'MANAGER'), createCSRActivity);
+router.post('/', requireAuth, createCSRActivity);
 router.put('/:id', requireAuth, requireRole('ADMIN', 'MANAGER'), updateCSRActivity);
 router.delete('/:id', requireAuth, requireRole('ADMIN'), deleteCSRActivity);
 

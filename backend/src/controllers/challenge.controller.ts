@@ -1,28 +1,28 @@
-import { Response } from 'express';
-import prisma from '../lib/prisma';
-import { AuthRequest } from '../middleware/auth.middleware';
+import { Response } from "express";
+import prisma from "../lib/prisma";
+import { AuthRequest } from "../middleware/auth.middleware";
 
 // ── LIST Challenges ──────────────────────────────────
 export const listChallenges = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const { status, difficulty, categoryId, search } = req.query;
-    const isAdmin = req.user?.role === 'ADMIN' || req.user?.role === 'MANAGER';
+    const isAdmin = req.user?.role === "ADMIN" || req.user?.role === "MANAGER";
 
     const challenges = await prisma.challenge.findMany({
       where: {
         // Employees only see ACTIVE challenges by default
         ...(status
           ? { status: status as any }
-          : !isAdmin ? { status: 'ACTIVE' } : {}),
+          : !isAdmin ? { status: "ACTIVE" } : {}),
         ...(difficulty ? { difficulty: difficulty as any } : {}),
-        ...(categoryId ? { categoryId: Number(categoryId) } : {}),
-        ...(search ? { title: { contains: String(search), mode: 'insensitive' } } : {}),
+        ...(categoryId ? { categoryId: String(categoryId) } : {}),
+        ...(search ? { title: { contains: String(search), mode: "insensitive" } } : {}),
       },
       include: {
         category: { select: { id: true, name: true } },
         _count: { select: { participations: true } },
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
 
     res.json({ success: true, data: challenges });
@@ -43,7 +43,7 @@ export const getChallenge = async (req: AuthRequest, res: Response): Promise<voi
       },
     });
     if (!challenge) {
-      res.status(404).json({ success: false, message: 'Challenge not found' });
+      res.status(404).json({ success: false, message: "Challenge not found" });
       return;
     }
 
@@ -67,7 +67,7 @@ export const createChallenge = async (req: AuthRequest, res: Response): Promise<
     const { title, description, categoryId, xpValue, difficulty, evidenceRequired, deadline } = req.body;
 
     if (!title || !categoryId) {
-      res.status(400).json({ success: false, message: 'title and categoryId are required' });
+      res.status(400).json({ success: false, message: "title and categoryId are required" });
       return;
     }
 
@@ -75,12 +75,12 @@ export const createChallenge = async (req: AuthRequest, res: Response): Promise<
       data: {
         title,
         description,
-        categoryId: Number(categoryId),
+        categoryId: String(categoryId),
         xpValue: xpValue ? Number(xpValue) : 50,
-        difficulty: difficulty || 'MEDIUM',
-        evidenceRequired: evidenceRequired === true || evidenceRequired === 'true',
+        difficulty: difficulty || "MEDIUM",
+        evidenceRequired: evidenceRequired === true || evidenceRequired === "true",
         deadline: deadline ? new Date(deadline) : null,
-        status: 'DRAFT',
+        status: "ACTIVE",
         createdById: req.user!.id,
       },
     });
@@ -102,7 +102,7 @@ export const updateChallenge = async (req: AuthRequest, res: Response): Promise<
       data: {
         ...(title && { title }),
         ...(description !== undefined && { description }),
-        ...(categoryId && { categoryId: Number(categoryId) }),
+        ...(categoryId && { categoryId: String(categoryId) }),
         ...(xpValue !== undefined && { xpValue: Number(xpValue) }),
         ...(difficulty && { difficulty }),
         ...(evidenceRequired !== undefined && { evidenceRequired: Boolean(evidenceRequired) }),
@@ -119,9 +119,9 @@ export const updateChallenge = async (req: AuthRequest, res: Response): Promise<
 // ── ADVANCE Challenge Status (Admin/Manager) ─────────
 // Lifecycle: DRAFT → ACTIVE → UNDER_REVIEW → COMPLETED (or ARCHIVED anytime)
 const NEXT_STATUS: Record<string, string> = {
-  DRAFT: 'ACTIVE',
-  ACTIVE: 'UNDER_REVIEW',
-  UNDER_REVIEW: 'COMPLETED',
+  DRAFT: "ACTIVE",
+  ACTIVE: "UNDER_REVIEW",
+  UNDER_REVIEW: "COMPLETED",
 };
 
 export const advanceChallengeStatus = async (req: AuthRequest, res: Response): Promise<void> => {
@@ -131,7 +131,7 @@ export const advanceChallengeStatus = async (req: AuthRequest, res: Response): P
 
     const challenge = await prisma.challenge.findUnique({ where: { id } });
     if (!challenge) {
-      res.status(404).json({ success: false, message: 'Challenge not found' });
+      res.status(404).json({ success: false, message: "Challenge not found" });
       return;
     }
 
@@ -139,7 +139,7 @@ export const advanceChallengeStatus = async (req: AuthRequest, res: Response): P
     if (!newStatus) {
       newStatus = NEXT_STATUS[challenge.status];
       if (!newStatus) {
-        res.status(400).json({ success: false, message: 'Challenge is already in final state' });
+        res.status(400).json({ success: false, message: "Challenge is already in final state" });
         return;
       }
     }
@@ -159,8 +159,8 @@ export const advanceChallengeStatus = async (req: AuthRequest, res: Response): P
 export const archiveChallenge = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const id = Number(req.params.id);
-    await prisma.challenge.update({ where: { id }, data: { status: 'ARCHIVED' } });
-    res.json({ success: true, message: 'Challenge archived successfully' });
+    await prisma.challenge.update({ where: { id }, data: { status: "ARCHIVED" } });
+    res.json({ success: true, message: "Challenge archived successfully" });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });
   }

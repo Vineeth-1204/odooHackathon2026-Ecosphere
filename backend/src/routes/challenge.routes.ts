@@ -24,7 +24,7 @@ const router = Router();
 router.get('/', requireAuth, listChallenges);
 router.get('/participation/my', requireAuth, getMyChallengeParticipations);
 router.get('/:id', requireAuth, getChallenge);
-router.post('/', requireAuth, requireRole('ADMIN', 'MANAGER'), createChallenge);
+router.post('/', requireAuth, createChallenge);
 router.put('/:id', requireAuth, requireRole('ADMIN', 'MANAGER'), updateChallenge);
 router.put('/:id/status', requireAuth, requireRole('ADMIN', 'MANAGER'), advanceChallengeStatus);
 router.delete('/:id', requireAuth, requireRole('ADMIN'), archiveChallenge);

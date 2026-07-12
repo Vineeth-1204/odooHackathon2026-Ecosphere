@@ -85,7 +85,7 @@ export const EmissionFactorForm: React.FC = () => {
         await emissionService.createEmissionFactor(payload);
       }
 
-      navigate("/environment/emission-factors");
+      navigate("/admin/environment/emission-factors");
     } catch (err: any) {
       console.error(err);
       setError(err.message || "An error occurred while saving the emission factor.");
@@ -106,19 +106,19 @@ export const EmissionFactorForm: React.FC = () => {
     <div className="p-6 max-w-xl mx-auto space-y-6">
       {/* Back Button */}
       <Link
-        to="/environment/emission-factors"
-        className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors w-max"
+        to="/admin/environment/emission-factors"
+        className="flex items-center gap-1.5 text-xs text-[#90998C] hover:text-[#24333E] transition-colors w-max"
       >
         <ArrowLeft size={14} /> Back to list
       </Link>
 
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-slate-100 tracking-tight flex items-center gap-2">
-          <Leaf className="text-emerald-400" size={20} />
+        <h1 className="text-xl font-extrabold text-[#24333E] tracking-tight flex items-center gap-2">
+          <Leaf className="text-[#1F4032]" size={20} />
           {isEdit ? "Modify Emission Factor" : "New Emission Factor"}
         </h1>
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-[#90998C] mt-1">
           {isEdit 
             ? "Update properties for this emission constant." 
             : "Define a new category-linked carbon equivalent factor."}
@@ -171,7 +171,7 @@ export const EmissionFactorForm: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Category */}
             <div className="flex flex-col gap-1 w-full">
-              <label htmlFor="factor-category" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="factor-category" className="text-xs font-semibold text-[#90998C] uppercase tracking-wider">
                 Category
               </label>
               <select
@@ -179,7 +179,7 @@ export const EmissionFactorForm: React.FC = () => {
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
                 required
-                className="glass-input w-full bg-slate-950 border border-slate-800 text-xs py-2"
+                className="glass-input w-full bg-white border border-[#E4E6DF] text-xs py-2"
               >
                 <option value="">Select Category</option>
                 {categories.map((cat) => (
@@ -213,17 +213,17 @@ export const EmissionFactorForm: React.FC = () => {
         </div>
 
         {/* Buttons */}
-        <div className="flex items-center gap-3 pt-3 border-t border-slate-900 justify-end">
+        <div className="flex items-center gap-3 pt-3 border-t border-[#E4E6DF] justify-end">
           <Link
             to="/environment/emission-factors"
-            className="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white rounded-lg hover:bg-slate-900/60 transition-colors"
+            className="px-4 py-2 text-xs font-semibold text-[#90998C] hover:text-[#24333E] rounded-lg hover:bg-white/60 transition-colors"
           >
             Cancel
           </Link>
           <Button
             type="submit"
             isLoading={loading}
-            className="flex items-center gap-1.5 text-xs font-bold text-slate-950"
+            className="flex items-center gap-1.5 text-xs font-bold text-white"
           >
             <Save size={14} /> Save Factor
           </Button>

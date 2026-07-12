@@ -1,11 +1,11 @@
-import prisma from '../lib/prisma';
-import { checkAndAwardBadges } from './badge.service';
+import prisma from "../lib/prisma";
+import { checkAndAwardBadges } from "./badge.service";
 
 /**
  * Awards XP points to a user.
  * Also triggers badge auto-award check.
  */
-export async function awardXP(userId: number, amount: number): Promise<number> {
+export async function awardXP(userId: string, amount: number): Promise<number> {
   const updated = await prisma.user.update({
     where: { id: userId },
     data: { xpPoints: { increment: amount } },
@@ -22,7 +22,7 @@ export async function awardXP(userId: number, amount: number): Promise<number> {
  * Awards reward points (from CSR activity completions).
  * Reward points are separate from XP — they can be spent on rewards.
  */
-export async function awardRewardPoints(userId: number, amount: number): Promise<number> {
+export async function awardRewardPoints(userId: string, amount: number): Promise<number> {
   const updated = await prisma.user.update({
     where: { id: userId },
     data: { rewardPoints: { increment: amount } },
@@ -39,20 +39,20 @@ export async function awardRewardPoints(userId: number, amount: number): Promise
  * Atomically deducts reward points and decrements reward stock.
  * Throws if insufficient points or stock.
  */
-export async function redeemReward(userId: number, rewardId: number): Promise<void> {
+export async function redeemReward(userId: string, rewardId: number): Promise<void> {
   await prisma.$transaction(async (tx) => {
     // 1. Lock and fetch reward
     const reward = await tx.reward.findUnique({ where: { id: rewardId } });
-    if (!reward || reward.status !== 'ACTIVE') {
-      throw new Error('Reward not found or unavailable');
+    if (!reward || reward.status !== "ACTIVE") {
+      throw new Error("Reward not found or unavailable");
     }
     if (reward.stock <= 0) {
-      throw new Error('Reward is out of stock');
+      throw new Error("Reward is out of stock");
     }
 
     // 2. Lock and fetch user
     const user = await tx.user.findUnique({ where: { id: userId } });
-    if (!user) throw new Error('User not found');
+    if (!user) throw new Error("User not found");
     if (user.rewardPoints < reward.pointsCost) {
       throw new Error(`Insufficient points. You need ${reward.pointsCost} but have ${user.rewardPoints}`);
     }
@@ -79,11 +79,11 @@ export async function redeemReward(userId: number, rewardId: number): Promise<vo
 /**
  * Returns a user's current XP and reward point balances.
  */
-export async function getUserBalance(userId: number): Promise<{ xpPoints: number; rewardPoints: number }> {
+export async function getUserBalance(userId: string): Promise<{ xpPoints: number; rewardPoints: number }> {
   const user = await prisma.user.findUnique({
     where: { id: userId },
     select: { xpPoints: true, rewardPoints: true },
   });
-  if (!user) throw new Error('User not found');
+  if (!user) throw new Error("User not found");
   return user;
 }

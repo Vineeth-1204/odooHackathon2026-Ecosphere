@@ -51,15 +51,15 @@ export const GoalList: React.FC = () => {
   }, [selectedDept, selectedStatus]);
 
   const handleEdit = (goal: any) => {
-    navigate(`/environment/goals/edit/${goal.id}`);
+    navigate(`/admin/environment/goals/edit/${goal.id}`);
   };
 
   return (
     <div className="p-6 space-y-6">
       {/* Back Button */}
       <RouterLink
-        to="/environment/dashboard"
-        className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors w-max"
+        to="/admin/environment/dashboard"
+        className="flex items-center gap-1.5 text-xs text-[#90998C] hover:text-[#24333E] transition-colors w-max"
       >
         <ArrowLeft size={14} /> Back to dashboard
       </RouterLink>
@@ -67,19 +67,19 @@ export const GoalList: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-100 tracking-tight flex items-center gap-2">
-            <Target className="text-emerald-400" />
+          <h1 className="text-2xl font-extrabold text-[#24333E] tracking-tight flex items-center gap-2">
+            <Target className="text-[#1F4032]" />
             Sustainability Goals
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#90998C] mt-1">
             Track, set limits, and measure achievements for carbon equivalent reduction targets.
           </p>
         </div>
 
         {isAdminOrManager && (
           <RouterLink
-            to="/environment/goals/create"
-            className="flex items-center gap-1.5 bg-gradient-primary text-slate-950 font-bold text-xs px-4 py-2 rounded-lg bg-gradient-hover shadow-lg shadow-brand-500/15"
+            to="/admin/environment/goals/create"
+            className="flex items-center gap-1.5 bg-[#1F4032] text-white font-bold text-xs px-4 py-2 rounded-lg hover:bg-[#1F4032]/90 shadow-lg shadow-sm"
           >
             <Plus size={14} /> Set Target
           </RouterLink>
@@ -90,11 +90,11 @@ export const GoalList: React.FC = () => {
       <div className="glass-panel rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Department Filter */}
         <div className="flex items-center gap-2.5 w-full sm:w-auto">
-          <SlidersHorizontal size={14} className="text-slate-500" />
+          <SlidersHorizontal size={14} className="text-[#90998C]" />
           <select
             value={selectedDept}
             onChange={(e) => setSelectedDept(e.target.value)}
-            className="glass-input py-1.5 text-xs w-full sm:w-48 bg-slate-950 border border-slate-800"
+            className="glass-input py-1.5 text-xs w-full sm:w-48 bg-white border border-[#E4E6DF]"
           >
             <option value="">All Departments</option>
             {departments.map((d) => (
@@ -110,7 +110,7 @@ export const GoalList: React.FC = () => {
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="glass-input py-1.5 text-xs w-full sm:w-48 bg-slate-950 border border-slate-800"
+            className="glass-input py-1.5 text-xs w-full sm:w-48 bg-white border border-[#E4E6DF]"
           >
             <option value="">All Statuses</option>
             <option value="ACTIVE">Active</option>
@@ -130,7 +130,7 @@ export const GoalList: React.FC = () => {
           {error}
         </div>
       ) : goals.length === 0 ? (
-        <div className="glass-panel rounded-xl p-12 text-center text-slate-500 text-sm">
+        <div className="glass-panel rounded-xl p-12 text-center text-[#90998C] text-sm">
           No sustainability targets found matching the filters.
         </div>
       ) : (

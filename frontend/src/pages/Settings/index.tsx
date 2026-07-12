@@ -49,8 +49,8 @@ export const SettingsDashboard: React.FC = () => {
     <div className="flex flex-col gap-6 animate-in fade-in duration-300">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-slate-100">System Configurations</h1>
-        <p className="text-slate-400 text-sm mt-1">Configure site details, manage registration, setup notification digests and ESG engine parameters</p>
+        <h1 className="text-2xl font-bold tracking-tight text-[#24333E]">System Configurations</h1>
+        <p className="text-[#90998C] text-sm mt-1">Configure site details, manage registration, setup notification digests and ESG engine parameters</p>
       </div>
 
       {isLoading ? (
@@ -62,15 +62,15 @@ export const SettingsDashboard: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Tabs Menu */}
-          <div className="lg:col-span-1 flex flex-col gap-1 bg-slate-900/30 p-2 border border-slate-900 rounded-xl h-fit">
+          <div className="lg:col-span-1 flex flex-col gap-1 bg-[#F3F5EF] p-2 border border-[#E4E6DF] rounded-xl h-fit">
             {tabs.map((tab) => (
               <button
                 key={tab.name}
                 onClick={() => setActiveTab(tab.name as TabName)}
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all text-left ${
                   activeTab === tab.name
-                    ? "bg-brand-500/10 text-brand-400 border border-brand-500/20"
-                    : "text-slate-400 hover:text-white hover:bg-slate-900/60 border border-transparent"
+                    ? "bg-brand-500/10 text-[#1F4032] border border-brand-500/20"
+                    : "text-[#90998C] hover:text-[#24333E] hover:bg-white/60 border border-transparent"
                 }`}
               >
                 {tab.icon}
@@ -81,7 +81,7 @@ export const SettingsDashboard: React.FC = () => {
 
           {/* Active Tab Panel */}
           <div className="lg:col-span-3 glass-panel rounded-xl p-6">
-            <h3 className="text-base font-bold text-slate-100 mb-6 border-b border-slate-900 pb-3 uppercase tracking-wider text-xs text-slate-400 flex items-center gap-2">
+            <h3 className="text-base font-bold text-[#24333E] mb-6 border-b border-[#E4E6DF] pb-3 uppercase tracking-wider text-xs text-[#90998C] flex items-center gap-2">
               {tabs.find((t) => t.name === activeTab)?.icon}
               {tabs.find((t) => t.name === activeTab)?.label}
             </h3>

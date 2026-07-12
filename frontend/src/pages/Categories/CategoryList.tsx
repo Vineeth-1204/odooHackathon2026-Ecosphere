@@ -92,10 +92,10 @@ export const CategoryList: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-100 flex items-center gap-2">
-            ESG Categories <FolderOpen className="text-brand-400" size={22} />
+          <h1 className="text-2xl font-bold tracking-tight text-[#24333E] flex items-center gap-2">
+            ESG Categories <FolderOpen className="text-[#1F4032]" size={22} />
           </h1>
-          <p className="text-slate-400 text-sm mt-1">Configure ESG and carbon scope categories used throughout the application modules</p>
+          <p className="text-[#90998C] text-sm mt-1">Configure ESG and carbon scope categories used throughout the application modules</p>
         </div>
 
         {isAdmin && (
@@ -116,7 +116,7 @@ export const CategoryList: React.FC = () => {
       {isLoading ? (
         <Loading text="Retrieving ESG categories..." />
       ) : categories.length === 0 ? (
-        <div className="glass-panel py-16 text-center text-slate-400 rounded-xl">
+        <div className="glass-panel py-16 text-center text-[#90998C] rounded-xl">
           <div className="text-sm font-medium">No configuration categories set up yet.</div>
           {isAdmin && (
             <Button variant="outline" size="sm" className="mt-4" onClick={handleCreateClick}>
